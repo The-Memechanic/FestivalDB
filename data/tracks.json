@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-08-11T15:23:29.981Z"
+    "lastUpdated": "2026-08-18T16:09:34.173Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -18939,5 +18939,57 @@
     "albumArt": "https://cdn2.unrealengine.com/vgejit1qguecypgd-512x512-c60135815828.jpg",
     "added": "2026-08-11T14:28:16.949Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/38/49/4c/38494cb4-f9e0-1db4-0b84-8c478cb55390/mzaf_4251933786704889664.plus.aac.p.m4a"
+  },
+  "selfaware": {
+    "id": "selfaware",
+    "song": "Self Aware",
+    "artist": "Temper City",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 160,
+    "duration": 182,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 1,
+      "bass": 1,
+      "drums": 1,
+      "plasticVocals": 2,
+      "plasticGuitar": 1,
+      "plasticBass": 1,
+      "plasticDrums": 1
+    },
+    "key": "A",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/fhwzrq7spqitxr9j-512x512-8229763adce7.jpg",
+    "added": "2026-08-18T16:09:28.716Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/48/89/4d/48894def-36b6-0085-9184-b28a200cf47a/mzaf_6109765307626823795.plus.aac.p.m4a"
+  },
+  "fabienk": {
+    "id": "fabienk",
+    "song": "Fabienk",
+    "artist": "Angine de Poitrine",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 128,
+    "duration": 392,
+    "difficulty": {
+      "vocals": 0,
+      "guitar": 3,
+      "bass": 6,
+      "drums": 5,
+      "plasticVocals": 0,
+      "plasticGuitar": 4,
+      "plasticBass": 5,
+      "plasticDrums": 5
+    },
+    "key": "E",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/t5ba8xyc6ot2y0yg-512x512-2a9127e24923.jpg",
+    "added": "2026-08-18T16:09:28.716Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9a/df/7f/9adf7f04-7827-01d0-17cb-cf42f61592ee/mzaf_10063767323855514863.plus.aac.p.m4a"
   }
 }
