@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-08-18T16:09:34.173Z"
+    "lastUpdated": "2026-08-20T08:14:59.188Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -18991,5 +18991,83 @@
     "albumArt": "https://cdn2.unrealengine.com/t5ba8xyc6ot2y0yg-512x512-2a9127e24923.jpg",
     "added": "2026-08-18T16:09:28.716Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9a/df/7f/9adf7f04-7827-01d0-17cb-cf42f61592ee/mzaf_10063767323855514863.plus.aac.p.m4a"
+  },
+  "buildit": {
+    "id": "buildit",
+    "song": "Build It!",
+    "artist": "Epic Games",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 139,
+    "duration": 177,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 5,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 5,
+      "plasticGuitar": 5,
+      "plasticBass": 2,
+      "plasticDrums": 4
+    },
+    "key": "E",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/fnvp4kizy8hl3qzw-512x512-7177b20fb88c.jpg",
+    "added": "2026-08-20T08:14:59.160Z",
+    "previewUrl": null
+  },
+  "invincible": {
+    "id": "invincible",
+    "song": "Invincible",
+    "artist": "Epic Games",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 134,
+    "duration": 187,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 5,
+      "bass": 6,
+      "drums": 5,
+      "plasticVocals": 3,
+      "plasticGuitar": 5,
+      "plasticBass": 6,
+      "plasticDrums": 4
+    },
+    "key": "A",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/u9exkvvphfldjzhq-512x512-87949c95e726.jpg",
+    "added": "2026-08-20T08:14:59.161Z",
+    "previewUrl": null
+  },
+  "goingfaster": {
+    "id": "goingfaster",
+    "song": "Going Faster",
+    "artist": "Epic Games",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 167,
+    "duration": 204,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 4,
+      "drums": 5,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 4,
+      "plasticDrums": 5
+    },
+    "key": "Db",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ncro55mvwoqusgmu-512x512-3775e1326245.jpg",
+    "added": "2026-08-20T08:14:59.161Z",
+    "previewUrl": null
   }
 }
