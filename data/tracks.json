@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-08-20T08:14:59.188Z"
+    "lastUpdated": "2026-08-25T14:18:55.851Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19069,5 +19069,83 @@
     "albumArt": "https://cdn2.unrealengine.com/ncro55mvwoqusgmu-512x512-3775e1326245.jpg",
     "added": "2026-08-20T08:14:59.161Z",
     "previewUrl": null
+  },
+  "jane": {
+    "id": "jane",
+    "song": "Jane!",
+    "artist": "The Long Faces",
+    "album": "",
+    "releaseYear": 2018,
+    "bpm": 146,
+    "duration": 191,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 4,
+      "drums": 4,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "Db",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/zbegsveuuivujmwt-512x512-ff7751358ca1.jpg",
+    "added": "2026-08-25T14:18:45.376Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7e/3d/bd/7e3dbde2-b317-8722-aca9-71109dbbeda7/mzaf_10498704618704694337.plus.aac.p.m4a"
+  },
+  "hotblooded": {
+    "id": "hotblooded",
+    "song": "Hot Blooded",
+    "artist": "New Constellations",
+    "album": "",
+    "releaseYear": 2021,
+    "bpm": 103,
+    "duration": 239,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 0,
+      "bass": 1,
+      "drums": 2,
+      "plasticVocals": 3,
+      "plasticGuitar": 0,
+      "plasticBass": 1,
+      "plasticDrums": 2
+    },
+    "key": "E",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/scau3ud4crljlrmh-512x512-8c20ead3328d.jpg",
+    "added": "2026-08-25T14:18:45.376Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bc/21/fa/bc21fa42-570c-274e-4f05-4bb888de65b1/mzaf_4713572149705312261.plus.aac.p.m4a"
+  },
+  "spenddat": {
+    "id": "spenddat",
+    "song": "Spend Dat",
+    "artist": "Yung Miami",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 90,
+    "duration": 178,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 2,
+      "bass": 1,
+      "drums": 2,
+      "plasticVocals": 1,
+      "plasticGuitar": 2,
+      "plasticBass": 1,
+      "plasticDrums": 2
+    },
+    "key": "F",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ajkwqghh9rrnzqwp-512x512-1f0adad2aa85.jpg",
+    "added": "2026-08-25T14:18:45.376Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f8/a1/5c/f8a15c97-06f3-a20f-274f-6e04fdfb1bf1/mzaf_13159333694738563712.plus.aac.p.m4a"
   }
 }
