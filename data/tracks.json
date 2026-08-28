@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-08-25T14:18:55.851Z"
+    "lastUpdated": "2026-08-28T15:02:07.662Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19131,7 +19131,7 @@
     "bpm": 90,
     "duration": 178,
     "difficulty": {
-      "vocals": 5,
+      "vocals": 4,
       "guitar": 2,
       "bass": 1,
       "drums": 2,
