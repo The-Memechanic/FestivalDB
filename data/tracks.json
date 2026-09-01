@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-08-28T15:02:07.662Z"
+    "lastUpdated": "2026-09-01T18:17:58.675Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19147,5 +19147,31 @@
     "albumArt": "https://cdn2.unrealengine.com/ajkwqghh9rrnzqwp-512x512-1f0adad2aa85.jpg",
     "added": "2026-08-25T14:18:45.376Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f8/a1/5c/f8a15c97-06f3-a20f-274f-6e04fdfb1bf1/mzaf_13159333694738563712.plus.aac.p.m4a"
+  },
+  "boston": {
+    "id": "boston",
+    "song": "Boston",
+    "artist": "STELLA LEFTY",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 126,
+    "duration": 176,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 3,
+      "bass": 0,
+      "drums": 1,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 0,
+      "plasticDrums": 1
+    },
+    "key": "C",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/frqpdul9ixmsfkth-512x512-0489c14f0de9.jpg",
+    "added": "2026-09-01T18:17:58.492Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/37/19/59/3719593a-1c8a-e1e1-ca9d-2e8f358593d5/mzaf_8805471580179932113.plus.aac.p.m4a"
   }
 }
