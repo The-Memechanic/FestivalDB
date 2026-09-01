@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-01T18:17:58.675Z"
+    "lastUpdated": "2026-09-01T19:11:59.216Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19173,5 +19173,31 @@
     "albumArt": "https://cdn2.unrealengine.com/frqpdul9ixmsfkth-512x512-0489c14f0de9.jpg",
     "added": "2026-09-01T18:17:58.492Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/37/19/59/3719593a-1c8a-e1e1-ca9d-2e8f358593d5/mzaf_8805471580179932113.plus.aac.p.m4a"
+  },
+  "canyoufeelmyheart": {
+    "id": "canyoufeelmyheart",
+    "song": "Can You Feel My Heart",
+    "artist": "Bring Me The Horizon",
+    "album": "",
+    "releaseYear": 2013,
+    "bpm": 128,
+    "duration": 230,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 2,
+      "plasticGuitar": 2,
+      "plasticBass": 2,
+      "plasticDrums": 3
+    },
+    "key": "E",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/nveu8mol9qtwyxdb-512x512-1209c7bf16e6.jpg",
+    "added": "2026-09-01T19:11:59.022Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e1/1a/1b/e11a1b2e-a726-bffc-d971-e6509e30bb77/mzaf_16095554912017420238.plus.aac.p.m4a"
   }
 }
