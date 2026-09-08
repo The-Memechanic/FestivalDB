@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-01T19:11:59.216Z"
+    "lastUpdated": "2026-09-08T18:17:51.342Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19199,5 +19199,57 @@
     "albumArt": "https://cdn2.unrealengine.com/nveu8mol9qtwyxdb-512x512-1209c7bf16e6.jpg",
     "added": "2026-09-01T19:11:59.022Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/e1/1a/1b/e11a1b2e-a726-bffc-d971-e6509e30bb77/mzaf_16095554912017420238.plus.aac.p.m4a"
+  },
+  "goodmorningusa": {
+    "id": "goodmorningusa",
+    "song": "Good Morning U.S.A. (Main Title Theme)",
+    "artist": "American Dad! Cast",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 150,
+    "duration": 97,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 4,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 2,
+      "plasticGuitar": 4,
+      "plasticBass": 3,
+      "plasticDrums": 3
+    },
+    "key": "Bb",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/g4hih2qwtscle004-512x512-081b303d5f7d.jpg",
+    "added": "2026-09-08T18:17:45.759Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7c/ff/47/7cff474b-1597-2274-3dc0-b2b49140d316/mzaf_4733707183965891872.plus.aac.p.m4a"
+  },
+  "elsonidito": {
+    "id": "elsonidito",
+    "song": "El Sonidito",
+    "artist": "Hechizeros Band",
+    "album": "",
+    "releaseYear": 2008,
+    "bpm": 154,
+    "duration": 196,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 2,
+      "bass": 2,
+      "drums": 5,
+      "plasticVocals": 0,
+      "plasticGuitar": 2,
+      "plasticBass": 2,
+      "plasticDrums": 4
+    },
+    "key": "C",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/r4o7y2n9nukznep8-512x512-75d089928063.jpg",
+    "added": "2026-09-08T18:17:45.759Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/54/81/38/54813877-96cf-7da0-5779-52f7a8be3f07/mzaf_17771229310390628750.plus.aac.p.m4a"
   }
 }
