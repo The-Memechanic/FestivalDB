@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-10T17:12:21.254Z"
+    "lastUpdated": "2026-09-15T15:13:35.025Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19329,5 +19329,57 @@
     "albumArt": "https://cdn2.unrealengine.com/tbr1tzaerlqrgwvl-512x512-5f43ef201a8e.jpg",
     "added": "2026-09-10T17:12:10.423Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a2/e2/96/a2e29686-9017-64ab-634e-a5fceae830e2/mzaf_5056933364315365550.plus.aac.p.m4a"
+  },
+  "dearlybeloved": {
+    "id": "dearlybeloved",
+    "song": "Dearly Beloved",
+    "artist": "Yoko Shimomura",
+    "album": "",
+    "releaseYear": 2014,
+    "bpm": 118,
+    "duration": 260,
+    "difficulty": {
+      "vocals": 1,
+      "guitar": 0,
+      "bass": 1,
+      "drums": 0,
+      "plasticVocals": 99,
+      "plasticGuitar": 0,
+      "plasticBass": 1,
+      "plasticDrums": 0
+    },
+    "key": "Eb",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ee2id0lwx7codhdr-512x512-d3115430c8cc.jpg",
+    "added": "2026-09-15T15:13:29.564Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b2/0b/07/b20b07df-7edc-1637-e852-4486d5420d33/mzaf_9460771497437955596.plus.aac.p.m4a"
+  },
+  "theotherpromise": {
+    "id": "theotherpromise",
+    "song": "The Other Promise",
+    "artist": "Yoko Shimomura",
+    "album": "",
+    "releaseYear": 2014,
+    "bpm": 136,
+    "duration": 278,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 4,
+      "bass": 0,
+      "drums": 0,
+      "plasticVocals": 99,
+      "plasticGuitar": 4,
+      "plasticBass": 0,
+      "plasticDrums": 0
+    },
+    "key": "D",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/q271xm0c0itmqqdm-512x512-d3eff0020077.jpg",
+    "added": "2026-09-15T15:13:29.564Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6a/c7/e3/6ac7e3ad-c2d7-5b56-4614-79ac817913ca/mzaf_7558131717137565163.plus.aac.p.m4a"
   }
 }
