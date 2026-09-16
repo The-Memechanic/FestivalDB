@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-15T15:13:35.025Z"
+    "lastUpdated": "2026-09-16T15:13:31.081Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19381,5 +19381,83 @@
     "albumArt": "https://cdn2.unrealengine.com/q271xm0c0itmqqdm-512x512-d3eff0020077.jpg",
     "added": "2026-09-15T15:13:29.564Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6a/c7/e3/6ac7e3ad-c2d7-5b56-4614-79ac817913ca/mzaf_7558131717137565163.plus.aac.p.m4a"
+  },
+  "meow": {
+    "id": "meow",
+    "song": "Meow",
+    "artist": "Ironmouse, Sleeping Forest, HalaCG",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 123,
+    "duration": 163,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 3,
+      "plasticVocals": 4,
+      "plasticGuitar": 2,
+      "plasticBass": 4,
+      "plasticDrums": 3
+    },
+    "key": "Ab",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/mrk6hymt4kgvldq1-512x512-e23f6705b8e1.jpg",
+    "added": "2026-09-16T15:13:20.327Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/32/07/d4/3207d420-d3d1-cc78-09ea-e9009ea1e415/mzaf_9966500427929793945.plus.aac.p.m4a"
+  },
+  "cryforme": {
+    "id": "cryforme",
+    "song": "Cry For Me (Wa Wa Wa)",
+    "artist": "Ironmouse, Shirobeats, HalaCG (ft. Bubi)",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 124,
+    "duration": 163,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 5,
+      "plasticVocals": 4,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "Db",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/vdvkmevfkhwui7co-512x512-bfd4a58cfcb4.jpg",
+    "added": "2026-09-16T15:13:20.327Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2b/2d/5a/2b2d5ad0-8e93-3f5a-5302-9e0d687c5ebe/mzaf_13209437487986995133.plus.aac.p.m4a"
+  },
+  "hellagain": {
+    "id": "hellagain",
+    "song": "Hell Again",
+    "artist": "Ironmouse, Shirobeats, HalaCG",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 135,
+    "duration": 155,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 0,
+      "drums": 1,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 0,
+      "plasticDrums": 1
+    },
+    "key": "Db",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/zrhdakz6q8yzi6ph-512x512-207924399663.jpg",
+    "added": "2026-09-16T15:13:20.327Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/21/1a/4b/211a4b1e-884c-6494-8508-b11aeecdb956/mzaf_17183930960597811887.plus.aac.p.m4a"
   }
 }
