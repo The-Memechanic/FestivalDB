@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-16T18:16:53.574Z"
+    "lastUpdated": "2026-09-18T00:37:59.406Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19459,5 +19459,31 @@
     "albumArt": "https://cdn2.unrealengine.com/zrhdakz6q8yzi6ph-512x512-207924399663.jpg",
     "added": "2026-09-16T15:13:20.327Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/21/1a/4b/211a4b1e-884c-6494-8508-b11aeecdb956/mzaf_17183930960597811887.plus.aac.p.m4a"
+  },
+  "twoloud": {
+    "id": "twoloud",
+    "song": "2LOUD",
+    "artist": "Rei Ami",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 111,
+    "duration": 153,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 2,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 2
+    },
+    "key": "Bb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/luh4haau1xrqyp4b-512x512-7aec24825375.jpg",
+    "added": "2026-09-18T00:37:59.122Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/20/86/a5/2086a5ca-254e-46d6-bdeb-ebcbd4b06602/mzaf_14103626881571120058.plus.aac.p.m4a"
   }
 }
