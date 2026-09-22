@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-18T15:13:30.281Z"
+    "lastUpdated": "2026-09-22T14:15:16.666Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19511,5 +19511,31 @@
     "albumArt": "https://cdn2.unrealengine.com/fif0yblffovoyxlx-512x512-9c28a853d911.jpg",
     "added": "2026-09-18T15:13:29.995Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/41/34/56/4134564c-7b29-3107-55d8-9efe67b3d305/mzaf_6935030530292179362.plus.aac.p.m4a"
+  },
+  "greenhillzone": {
+    "id": "greenhillzone",
+    "song": "Green Hill Zone: Act 2 - Normal",
+    "artist": "SEGA SOUND TEAM, Jun Senoue",
+    "album": "",
+    "releaseYear": 2012,
+    "bpm": 159,
+    "duration": 140,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 3,
+      "drums": 4,
+      "plasticVocals": 99,
+      "plasticGuitar": 4,
+      "plasticBass": 3,
+      "plasticDrums": 3
+    },
+    "key": "C",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/2hzzgsawxfr43xzy-512x512-b706c4aaeccd.jpg",
+    "added": "2026-09-22T14:15:16.404Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7b/03/bc/7b03bc84-95b3-051d-6288-5baccc443166/mzaf_9603247504683005919.plus.aac.p.m4a"
   }
 }
