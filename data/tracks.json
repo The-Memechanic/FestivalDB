@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-22T14:15:16.666Z"
+    "lastUpdated": "2026-09-23T18:19:10.879Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19537,5 +19537,83 @@
     "albumArt": "https://cdn2.unrealengine.com/2hzzgsawxfr43xzy-512x512-b706c4aaeccd.jpg",
     "added": "2026-09-22T14:15:16.404Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7b/03/bc/7b03bc84-95b3-051d-6288-5baccc443166/mzaf_9603247504683005919.plus.aac.p.m4a"
+  },
+  "yesbaby": {
+    "id": "yesbaby",
+    "song": "yes baby",
+    "artist": "Madison Beer",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 134,
+    "duration": 178,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 4,
+      "plasticVocals": 4,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "B",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ynx6nif7ecxkht4k-512x512-7a2b972cbe0f.jpg",
+    "added": "2026-09-23T18:18:59.731Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/99/c6/5f/99c65fff-91d2-de02-9f0c-88d091425f0e/mzaf_8920416925474377655.plus.aac.p.m4a"
+  },
+  "bittersweet": {
+    "id": "bittersweet",
+    "song": "bittersweet",
+    "artist": "Madison Beer",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 110,
+    "duration": 207,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 1,
+      "drums": 1,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 1,
+      "plasticDrums": 1
+    },
+    "key": "F",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ybitkgkjysuqw6sk-512x512-1fd7a6c7abbf.jpg",
+    "added": "2026-09-23T18:18:59.732Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/23/be/9123be2a-506d-0470-97c9-b7e7524ad87c/mzaf_11621720843486479319.plus.aac.p.m4a"
+  },
+  "complexity": {
+    "id": "complexity",
+    "song": "complexity",
+    "artist": "Madison Beer",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 145,
+    "duration": 158,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 4,
+      "bass": 1,
+      "drums": 3,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 1,
+      "plasticDrums": 3
+    },
+    "key": "Bb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/lrtcyzuhsqw87ksc-512x512-eeee62606a6d.jpg",
+    "added": "2026-09-23T18:18:59.732Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7e/46/5e/7e465e34-1385-cf00-5cd4-9e0ef9642ca2/mzaf_2097436285638037040.plus.aac.p.m4a"
   }
 }
