@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-23T18:19:10.879Z"
+    "lastUpdated": "2026-09-25T13:14:02.135Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19615,5 +19615,31 @@
     "albumArt": "https://cdn2.unrealengine.com/lrtcyzuhsqw87ksc-512x512-eeee62606a6d.jpg",
     "added": "2026-09-23T18:18:59.732Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/7e/46/5e/7e465e34-1385-cf00-5cd4-9e0ef9642ca2/mzaf_2097436285638037040.plus.aac.p.m4a"
+  },
+  "lifewillchange": {
+    "id": "lifewillchange",
+    "song": "Life Will Change",
+    "artist": "Lyn, ATLUS Sound Team, ATLUS GAME MUSIC",
+    "album": "",
+    "releaseYear": 2016,
+    "bpm": 132,
+    "duration": 254,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 3,
+      "bass": 5,
+      "drums": 3,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 5,
+      "plasticDrums": 3
+    },
+    "key": "F",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/l2rxzxd2jd5nfnv2-512x512-381642344654.jpg",
+    "added": "2026-09-25T13:14:01.918Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/c2/4c/ecc24c86-c37f-c8e0-d263-4bd5484ebba9/mzaf_10885561237956339810.plus.aac.p.m4a"
   }
 }
