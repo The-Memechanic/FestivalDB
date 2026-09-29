@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-09-25T13:14:02.135Z"
+    "lastUpdated": "2026-09-29T15:15:18.869Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19641,5 +19641,57 @@
     "albumArt": "https://cdn2.unrealengine.com/l2rxzxd2jd5nfnv2-512x512-381642344654.jpg",
     "added": "2026-09-25T13:14:01.918Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/c2/4c/ecc24c86-c37f-c8e0-d263-4bd5484ebba9/mzaf_10885561237956339810.plus.aac.p.m4a"
+  },
+  "agravemistake": {
+    "id": "agravemistake",
+    "song": "A Grave Mistake",
+    "artist": "Ice Nine Kills",
+    "album": "",
+    "releaseYear": 2018,
+    "bpm": 117,
+    "duration": 189,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 3,
+      "drums": 5,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "Gb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/xf4r4g9qmcszk0mv-512x512-f10821f5ff14.jpg",
+    "added": "2026-09-29T15:15:13.386Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/93/54/09/93540964-0c9a-2c74-ddd0-738b10c842c0/mzaf_4098972525799683407.plus.aac.p.m4a"
+  },
+  "nightterror": {
+    "id": "nightterror",
+    "song": "Night Terror",
+    "artist": "Dream Theater",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 110,
+    "duration": 598,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 6,
+      "bass": 6,
+      "drums": 6,
+      "plasticVocals": 2,
+      "plasticGuitar": 6,
+      "plasticBass": 6,
+      "plasticDrums": 6
+    },
+    "key": "E",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/fs8mqvgej2rkp9ad-512x512-72a2fef5c677.jpg",
+    "added": "2026-09-29T15:15:13.386Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/91/61/e7/9161e77f-0a19-9bbe-2b09-f81843a33295/mzaf_16584618282814816752.plus.aac.p.m4a"
   }
 }
