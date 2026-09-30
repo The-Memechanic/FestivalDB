@@ -37,6 +37,7 @@ type SearchState = {
   bpmMax: number | null;
   durationMin: number | null;
   durationMax: number | null;
+  durationBoundsMax: number | null;
   sortOption: SortOption;
   sortDirection: "asc" | "desc";
   page: number;
@@ -54,6 +55,7 @@ const getDefaultState = (): SearchState => ({
   bpmMax: null,
   durationMin: null,
   durationMax: null,
+  durationBoundsMax: null,
   sortOption: "added",
   sortDirection: "desc",
   page: 1,
@@ -68,6 +70,7 @@ const readStoredState = (): SearchState => {
 
     const parsed = JSON.parse(raw) as Partial<SearchState>;
     const defaultState = getDefaultState();
+    const hasStoredDurationBounds = typeof parsed.durationBoundsMax === "number";
 
     return {
       query: typeof parsed.query === "string" ? parsed.query : defaultState.query,
@@ -80,8 +83,17 @@ const readStoredState = (): SearchState => {
           : defaultState.difficultyFilters,
       bpmMin: typeof parsed.bpmMin === "number" ? parsed.bpmMin : defaultState.bpmMin,
       bpmMax: typeof parsed.bpmMax === "number" ? parsed.bpmMax : defaultState.bpmMax,
-      durationMin: typeof parsed.durationMin === "number" ? parsed.durationMin : defaultState.durationMin,
-      durationMax: typeof parsed.durationMax === "number" ? parsed.durationMax : defaultState.durationMax,
+      // Older saved states don't record the dataset maximum, so treat their
+      // duration range as a default and initialize it from the current data.
+      durationMin:
+        hasStoredDurationBounds && typeof parsed.durationMin === "number"
+          ? parsed.durationMin
+          : defaultState.durationMin,
+      durationMax:
+        hasStoredDurationBounds && typeof parsed.durationMax === "number"
+          ? parsed.durationMax
+          : defaultState.durationMax,
+      durationBoundsMax: hasStoredDurationBounds ? parsed.durationBoundsMax! : defaultState.durationBoundsMax,
       sortOption: SORT_OPTIONS.some((option) => option.value === parsed.sortOption)
         ? (parsed.sortOption as SortOption)
         : defaultState.sortOption,
@@ -263,12 +275,16 @@ export default function SearchClient() {
 
     setDurationRange((current) => {
       if (!current) return [durationBounds.min, durationBounds.max];
+      const wasAtPreviousMaximum =
+        initialState.durationBoundsMax !== null && initialState.durationMax === initialState.durationBoundsMax;
       return [
         Math.max(durationBounds.min, Math.min(current[0], durationBounds.max)),
-        Math.max(durationBounds.min, Math.min(current[1], durationBounds.max)),
+        wasAtPreviousMaximum
+          ? durationBounds.max
+          : Math.max(durationBounds.min, Math.min(current[1], durationBounds.max)),
       ];
     });
-  }, [loading, bpmBounds, durationBounds]);
+  }, [loading, bpmBounds, durationBounds, initialState.durationBoundsMax, initialState.durationMax]);
 
   const isBpmNarrowed =
     bpmRange !== null && (bpmRange[0] > bpmBounds.min || bpmRange[1] < bpmBounds.max);
@@ -359,11 +375,12 @@ export default function SearchClient() {
       bpmMax: bpmRange ? bpmRange[1] : null,
       durationMin: durationRange ? durationRange[0] : null,
       durationMax: durationRange ? durationRange[1] : null,
+      durationBoundsMax: durationBounds.max,
       sortOption,
       sortDirection,
       page,
     });
-  }, [query, genreFilter, keyFilter, modeFilter, difficultyFilters, bpmRange, durationRange, sortOption, sortDirection, page]);
+  }, [query, genreFilter, keyFilter, modeFilter, difficultyFilters, bpmRange, durationRange, durationBounds.max, sortOption, sortDirection, page]);
 
   useEffect(() => {
     if (!hasHydratedRef.current) {
