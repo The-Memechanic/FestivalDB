@@ -115,7 +115,7 @@ function DifficultyDots({ value }: { value: number }) {
       {Array.from({ length: DIFFICULTY_MAX }).map((_, i) => (
         <span
           key={i}
-          className={`h-3.5 w-3.5 rounded-full ${
+          className={`h-3.5 w-3.5 shrink-0 rounded-full ${
             i < filled ? difficultyColor(filled) : "bg-border-muted"
           }`}
         />
@@ -132,7 +132,7 @@ function DifficultyBadges({ difficulty }: { difficulty: Record<string, unknown> 
   if (entries.length === 0) return null;
 
   return (
-    <div className="grid grid-cols-4 gap-x-20 gap-y-8 sm:grid-cols-2">
+    <div className="grid grid-cols-2 gap-x-4 gap-y-4">
       {entries.map((key) => {
         const rawValue = Number(difficulty[key]);
         const displayValue = rawValue + DIFFICULTY_DISPLAY_OFFSET;
@@ -258,7 +258,7 @@ export default function TrackPage() {
           </div>
         ) : (
           <div className="overflow-hidden rounded-xl border border-border-muted bg-bg-light shadow-sm">
-            <div className="flex flex-col gap-5 p-6 sm:flex-row sm:items-stretch">
+            <div className="flex flex-col gap-5 p-6 lg:flex-row lg:items-stretch">
               {track.albumArt ? (
                 <img
                   src={track.albumArt}
@@ -270,7 +270,7 @@ export default function TrackPage() {
                   ★
                 </div>
               )}
-              <div className="flex flex-1 flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-between">
+              <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-between">
                 <div className="flex h-64 flex-1 flex-col justify-between gap-3">
                   <div>
                     <h1 className="text-2xl font-semibold text-text">
@@ -284,7 +284,7 @@ export default function TrackPage() {
                   <AudioPlayer previewUrl={track.previewUrl} />
                 </div>
 
-                <div className="flex h-64 items-center sm:border-l sm:border-border-muted sm:pl-6">
+                <div className="flex h-64 items-center lg:border-l lg:border-border-muted lg:pl-6">
                   <DifficultyBadges
                     difficulty={track.difficulty as unknown as Record<string, unknown>}
                   />

@@ -14,11 +14,19 @@ export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [playbackError, setPlaybackError] = useState<string | null>(null);
 
   useEffect(() => {
+    setPlaying(false);
+    setCurrentTime(0);
+    setDuration(0);
+    setPlaybackError(null);
+    audioRef.current = null;
+
     if (!previewUrl) return;
 
-    const audio = new Audio(previewUrl);
+    const audio = new Audio();
+    audio.preload = "metadata";
     audioRef.current = audio;
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
@@ -27,16 +35,31 @@ export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
       setPlaying(false);
       setCurrentTime(0);
     };
+    const handlePlaying = () => setPlaying(true);
+    const handlePause = () => setPlaying(false);
+    const handleError = () => {
+      setPlaying(false);
+      setPlaybackError("This preview is unavailable or your browser can't play it.");
+    };
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("playing", handlePlaying);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("error", handleError);
+    audio.src = previewUrl;
+    audio.load();
 
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("playing", handlePlaying);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("error", handleError);
+      if (audioRef.current === audio) audioRef.current = null;
     };
   }, [previewUrl]);
 
@@ -56,8 +79,11 @@ export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play();
-      setPlaying(true);
+      setPlaybackError(null);
+      audio.play().catch(() => {
+        setPlaying(false);
+        setPlaybackError("Could not play this preview. It may be unavailable or unsupported.");
+      });
     }
   };
 
@@ -94,42 +120,50 @@ export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
     "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-primary text-bg-dark transition hover:bg-highlight";
 
   return (
-    <div className="flex w-full items-center gap-3 rounded-lg bg-bg px-3 py-2 border border-border-muted">
-      <button
-        onClick={togglePlay}
-        aria-label={playing ? "Pause preview" : "Play preview"}
-        className={buttonStyles}
-      >
-        {playing ? pauseIcon : playIcon}
-      </button>
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full items-center gap-3 rounded-lg border border-border-muted bg-bg px-3 py-2">
+        <button
+          onClick={togglePlay}
+          aria-label={playing ? "Pause preview" : "Play preview"}
+          className={buttonStyles}
+        >
+          {playing ? pauseIcon : playIcon}
+        </button>
 
-      <div className="flex flex-1 items-center gap-2">
-        <span className="w-9 flex-shrink-0 text-right text-xs tabular-nums text-text-muted">
-          {formatTime(currentTime)}
-        </span>
-        <input
-          type="range"
-          min={0}
-          max={duration || 0}
-          step={0.1}
-          value={currentTime}
-          onChange={handleSeek}
-          className="h-1.5 w-full flex-1 cursor-pointer accent-primary"
-        />
-        <span className="w-9 flex-shrink-0 text-xs tabular-nums text-text-muted">
-          {formatTime(duration)}
-        </span>
+        <div className="flex flex-1 items-center gap-2">
+          <span className="w-9 flex-shrink-0 text-right text-xs tabular-nums text-text-muted">
+            {formatTime(currentTime)}
+          </span>
+          <input
+            type="range"
+            aria-label="Seek preview"
+            min={0}
+            max={duration || 0}
+            step={0.1}
+            value={currentTime}
+            onChange={handleSeek}
+            className="h-1.5 w-full flex-1 cursor-pointer accent-primary"
+          />
+          <span className="w-9 flex-shrink-0 text-xs tabular-nums text-text-muted">
+            {formatTime(duration)}
+          </span>
+        </div>
+
+        <a
+          href={previewUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download preview"
+          className={buttonStyles}
+        >
+          {downloadIcon}
+        </a>
       </div>
-
-      <a
-        href={previewUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download preview"
-        className={buttonStyles}
-      >
-        {downloadIcon}
-      </a>
+      {playbackError ? (
+        <p role="status" className="text-xs text-danger">
+          {playbackError}
+        </p>
+      ) : null}
     </div>
   );
 }
