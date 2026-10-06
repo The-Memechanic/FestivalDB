@@ -55,10 +55,13 @@ async function fetchSparkTracks() {
 
   return Object.values(payload)
     .filter((entry) => entry?.track)
-    .map((entry) => entry.track);
+    .map((entry) => ({
+      track: entry.track,
+      activeDate: entry._activeDate,
+    }));
 }
 
-function transformTrack(track, existing) {
+function transformTrack(track, existing, activeDate) {
   return {
     id: track.sn,
     song: (track.tt ?? "").trim(),
@@ -82,7 +85,7 @@ function transformTrack(track, existing) {
     genres: track.ge ?? [],
     gameplayTags: track.gt ?? [],
     albumArt: track.au ?? "",
-    added: existing?.added ?? new Date().toISOString(),
+    added: activeDate ?? existing?.added ?? new Date().toISOString(),
     previewUrl: existing?.previewUrl ?? null,
   };
 }
@@ -183,18 +186,20 @@ function isEqual(a, b) {
 }
 
 async function main() {
+  const skipPreviews = process.argv.includes("--skip-previews");
   const existing = await readExisting();
 
   const sparkTracks = await fetchSparkTracks();
 
   const tracks = {};
 
-  for (const track of sparkTracks) {
+  for (const { track, activeDate } of sparkTracks) {
     if (!track.sn) continue;
 
     tracks[track.sn] = transformTrack(
       track,
-      existing[track.sn]
+      existing[track.sn],
+      activeDate
     );
   }
 
@@ -203,6 +208,12 @@ async function main() {
     console.log("Track catalog changed — saved.\n");
   } else {
     console.log("No catalog changes detected — skipping save.\n");
+  }
+
+  if (skipPreviews) {
+    console.log("Skipping preview URL lookups (--skip-previews).");
+    console.log(`Finished. Wrote ${Object.keys(tracks).length} tracks.`);
+    return;
   }
 
   const excludedArtists = [

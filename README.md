@@ -13,3 +13,9 @@ npm run dev
 ```
 
 The application will be available in your browser.
+
+To refresh the track catalog without looking up preview URLs, run:
+
+```bash
+npm run update-tracks -- --skip-previews
+```
