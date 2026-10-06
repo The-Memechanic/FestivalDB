@@ -43,6 +43,7 @@ const DIFFICULTY_ORDER = [
 
 const DIFFICULTY_MAX = 7;
 const DIFFICULTY_DISPLAY_OFFSET = 1; // raw API 0–6 -> displayed 1–7
+const UNSUPPORTED_DIFFICULTY = 99;
 
 const LABEL_OVERRIDES: Record<string, string> = {
   plasticVocals: "Pro Vocals",
@@ -109,7 +110,10 @@ const difficultyColor = (displayValue: number): string => {
 
 function DifficultyDots({ value }: { value: number }) {
   const displayValue = value + DIFFICULTY_DISPLAY_OFFSET;
-  const filled = Math.max(0, Math.min(DIFFICULTY_MAX, displayValue));
+  const filled =
+    value === UNSUPPORTED_DIFFICULTY
+      ? 0
+      : Math.max(0, Math.min(DIFFICULTY_MAX, displayValue));
   return (
     <div className="flex items-center gap-1">
       {Array.from({ length: DIFFICULTY_MAX }).map((_, i) => (
@@ -136,11 +140,14 @@ function DifficultyBadges({ difficulty }: { difficulty: Record<string, unknown> 
       {entries.map((key) => {
         const rawValue = Number(difficulty[key]);
         const displayValue = rawValue + DIFFICULTY_DISPLAY_OFFSET;
+        const unsupported = rawValue === UNSUPPORTED_DIFFICULTY;
         return (
           <div key={key} className="flex flex-col gap-1">
             <span className="text-sm font-semibold uppercase tracking-wide text-text-muted">
               {formatLabel(key)}{" "}
-              <span className="text-text-muted/70">({displayValue})</span>
+              <span className="text-text-muted/70">
+                {unsupported ? "(N/A)" : `(${displayValue})`}
+              </span>
             </span>
             <DifficultyDots value={rawValue} />
           </div>

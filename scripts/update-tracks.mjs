@@ -55,13 +55,10 @@ async function fetchSparkTracks() {
 
   return Object.values(payload)
     .filter((entry) => entry?.track)
-    .map((entry) => ({
-      track: entry.track,
-      activeDate: entry._activeDate,
-    }));
+    .map((entry) => entry.track);
 }
 
-function transformTrack(track, existing, activeDate) {
+function transformTrack(track, existing) {
   return {
     id: track.sn,
     song: (track.tt ?? "").trim(),
@@ -85,7 +82,7 @@ function transformTrack(track, existing, activeDate) {
     genres: track.ge ?? [],
     gameplayTags: track.gt ?? [],
     albumArt: track.au ?? "",
-    added: activeDate ?? existing?.added ?? new Date().toISOString(),
+    added: track.nu ?? null,
     previewUrl: existing?.previewUrl ?? null,
   };
 }
@@ -193,13 +190,12 @@ async function main() {
 
   const tracks = {};
 
-  for (const { track, activeDate } of sparkTracks) {
+  for (const track of sparkTracks) {
     if (!track.sn) continue;
 
     tracks[track.sn] = transformTrack(
       track,
-      existing[track.sn],
-      activeDate
+      existing[track.sn]
     );
   }
 

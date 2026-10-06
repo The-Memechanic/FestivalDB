@@ -120,11 +120,6 @@ const compareString = (a: string, b: string) =>
 
 const parseNumber = (value?: number | null) => (typeof value === "number" ? value : NaN);
 
-const parseDateValue = (value?: string): number | null => {
-  const date = new Date(value ?? "");
-  return Number.isNaN(date.getTime()) ? null : date.getTime();
-};
-
 const formatDuration = (seconds: number): string => {
   const total = Math.round(seconds);
   if (!Number.isFinite(total) || total < 0) return "—";
@@ -150,14 +145,6 @@ const compareRows = (a: TrackRow, b: TrackRow, sortOption: SortOption) => {
       if (!Number.isNaN(na)) return -1;
       if (!Number.isNaN(nb)) return 1;
       return compareString(a.song, b.song);
-    }
-    case "added": {
-      const da = parseDateValue(a.added);
-      const db = parseDateValue(b.added);
-      if (da !== null && db !== null) return da - db;
-      if (da !== null) return -1;
-      if (db !== null) return 1;
-      return compareString(a.added ?? "", b.added ?? "");
     }
     default:
       return 0;
@@ -337,7 +324,6 @@ export default function SearchClient() {
     return new Fuse(filteredRows, {
       keys: ["song", "artist"],
       threshold: 0.15,
-      ignoreLocation: true,
     });
   }, [filteredRows]);
 
@@ -349,9 +335,20 @@ export default function SearchClient() {
   const results = useMemo(() => {
     if (sortOption === "relevancy") return searchedRows;
 
-    const sorted = [...searchedRows].sort((a, b) => compareRows(a, b, sortOption));
-    return sortDirection === "asc" ? sorted : sorted.reverse();
-  }, [searchedRows, sortOption, sortDirection]);
+    if (sortOption === "added") {
+      const databaseOrder = new Map(rows.map((row, index) => [row.id, index] as const));
+      const sorted = [...searchedRows].sort(
+        (a, b) => (databaseOrder.get(a.id) ?? 0) - (databaseOrder.get(b.id) ?? 0)
+      );
+      return sortDirection === "desc" ? sorted.reverse() : sorted;
+    }
+
+    const sorted = [...searchedRows].sort((a, b) => {
+      const comparison = compareRows(a, b, sortOption);
+      return sortDirection === "asc" ? comparison : -comparison;
+    });
+    return sorted;
+  }, [rows, searchedRows, sortOption, sortDirection]);
 
   const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
   const paginatedResults = useMemo(() => {

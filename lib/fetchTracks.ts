@@ -24,7 +24,7 @@ export type TrackRow = {
   genres: string[];
   gameplayTags: string[];
   albumArt: string;
-  added: string;
+  added: string | null;
   key: string;
   mode: string;
   previewUrl: string | null;
