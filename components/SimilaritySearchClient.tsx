@@ -44,7 +44,7 @@ const getBpmSimilarity = (left?: number | null, right?: number | null) => {
   }
 
   const difference = Math.abs(leftBpm - rightBpm);
-  const normalized = Math.max(0, 1 - difference / 60);
+  const normalized = Math.max(0, 1 - difference / 100);
   return Math.min(1, normalized);
 };
 
@@ -63,13 +63,13 @@ const getKeySimilarity = (
 
   const difference = Math.abs(leftPitch - rightPitch);
   const shortestDistance = Math.min(difference, 12 - difference);
-  const baseSimilarity = Math.max(0, 1 - shortestDistance / 6);
+  const baseSimilarity = Math.max(0, 1 - Math.pow(shortestDistance / 6, 2));
 
   const leftModeNormalized = (leftMode ?? "").trim().toLowerCase();
   const rightModeNormalized = (rightMode ?? "").trim().toLowerCase();
 
   if (leftModeNormalized && rightModeNormalized && leftModeNormalized !== rightModeNormalized) {
-    return baseSimilarity * 0.5;
+    return Math.max(0, baseSimilarity - 0.3);
   }
 
   return baseSimilarity;
