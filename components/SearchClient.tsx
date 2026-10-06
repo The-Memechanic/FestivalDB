@@ -302,7 +302,8 @@ export default function SearchClient() {
         const minLevel = difficultyFilters[instrument.key];
         if (minLevel && minLevel > 0) {
           const raw = difficulty?.[instrument.key];
-          if (typeof raw !== "number" || raw + 1 < minLevel) return false;
+          if (typeof raw !== "number" || raw === 99) return false;
+          if (raw + 1 < minLevel) return false;
         }
       }
 
