@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-06T13:40:24.338Z"
+    "lastUpdated": "2026-10-06T15:14:50.274Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19693,5 +19693,57 @@
     "albumArt": "https://cdn2.unrealengine.com/fs8mqvgej2rkp9ad-512x512-72a2fef5c677.jpg",
     "added": "2026-10-03T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/91/61/e7/9161e77f-0a19-9bbe-2b09-f81843a33295/mzaf_16584618282814816752.plus.aac.p.m4a"
+  },
+  "whatsup": {
+    "id": "whatsup",
+    "song": "What's Up?",
+    "artist": "4 Non Blondes",
+    "album": "",
+    "releaseYear": 1992,
+    "bpm": 134,
+    "duration": 298,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 2,
+      "bass": 2,
+      "drums": 2,
+      "plasticVocals": 5,
+      "plasticGuitar": 2,
+      "plasticBass": 2,
+      "plasticDrums": 2
+    },
+    "key": "A",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/amv3ljoygklxomwy-512x515-05602bcc9617.jpg",
+    "added": "2026-10-12T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/0d/5e/61/0d5e612a-78a7-388a-79b8-c0c0cbb87a59/mzaf_16167981556861077252.plus.aac.p.m4a"
+  },
+  "omg": {
+    "id": "omg",
+    "song": "OMG",
+    "artist": "The Neighbourhood",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 116,
+    "duration": 188,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 2,
+      "bass": 3,
+      "drums": 3,
+      "plasticVocals": 2,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "F",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/el8iihj8cvk38v10-512x512-4bac3a45d391.jpg",
+    "added": "2026-10-10T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d3/14/10/d3141021-2c99-e19a-7193-ddf0ab5fcd5d/mzaf_2253491305222319852.plus.aac.p.m4a"
   }
 }
