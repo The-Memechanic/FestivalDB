@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-07T13:19:14.283Z"
+    "lastUpdated": "2026-10-15T08:20:41.244Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19745,5 +19745,109 @@
     "albumArt": "https://cdn2.unrealengine.com/el8iihj8cvk38v10-512x512-4bac3a45d391.jpg",
     "added": "2026-10-10T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d3/14/10/d3141021-2c99-e19a-7193-ddf0ab5fcd5d/mzaf_2253491305222319852.plus.aac.p.m4a"
+  },
+  "heliman": {
+    "id": "heliman",
+    "song": "HeliMan",
+    "artist": "Yeat",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 150,
+    "duration": 197,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 0,
+      "bass": 0,
+      "drums": 1,
+      "plasticVocals": 2,
+      "plasticGuitar": 0,
+      "plasticBass": 0,
+      "plasticDrums": 1
+    },
+    "key": "D",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ujkbhjcwgpyxbd2f-512x512-7827edcea705.jpg",
+    "added": "2026-10-17T00:00:00.000Z",
+    "previewUrl": null
+  },
+  "moneysobig": {
+    "id": "moneysobig",
+    "song": "Monëy so big",
+    "artist": "Yeat",
+    "album": "",
+    "releaseYear": 2021,
+    "bpm": 138,
+    "duration": 166,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 4,
+      "bass": 0,
+      "drums": 1,
+      "plasticVocals": 0,
+      "plasticGuitar": 4,
+      "plasticBass": 0,
+      "plasticDrums": 1
+    },
+    "key": "Gb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/pfzb43v4icfnydbt-512x512-e8f559b23d6a.jpg",
+    "added": "2026-10-17T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7a/5c/33/7a5c3396-09f6-c180-d7ab-3dd92f826644/mzaf_3560201851694137101.plus.aac.p.m4a"
+  },
+  "ifwebeingreal": {
+    "id": "ifwebeingreal",
+    "song": "If We Being Rëal",
+    "artist": "Yeat",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 128,
+    "duration": 178,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 2,
+      "bass": 0,
+      "drums": 2,
+      "plasticVocals": 2,
+      "plasticGuitar": 2,
+      "plasticBass": 0,
+      "plasticDrums": 2
+    },
+    "key": "Gb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/2vwuev2lov1pxnbr-512x512-4c46516bc0cb.jpg",
+    "added": "2026-10-17T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/cb/bd/c1/cbbdc1f4-b36b-7525-387a-e824c4432f5d/mzaf_3678672328761986911.plus.aac.p.m4a"
+  },
+  "getbusy2": {
+    "id": "getbusy2",
+    "song": "Gët Busy",
+    "artist": "Yeat",
+    "album": "",
+    "releaseYear": 2021,
+    "bpm": 140,
+    "duration": 159,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 1,
+      "bass": 0,
+      "drums": 2,
+      "plasticVocals": 2,
+      "plasticGuitar": 1,
+      "plasticBass": 0,
+      "plasticDrums": 2
+    },
+    "key": "Eb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ppfj8rivphtmgf5g-512x512-d3edd69c7c0a.jpg",
+    "added": "2026-10-17T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/b0/f3/65b0f3d9-9882-b43c-bb57-463b0849bf83/mzaf_10506361393973474378.plus.aac.p.m4a"
   }
 }
