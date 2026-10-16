@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-15T08:20:41.244Z"
+    "lastUpdated": "2026-10-16T13:14:22.169Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19849,5 +19849,57 @@
     "albumArt": "https://cdn2.unrealengine.com/ppfj8rivphtmgf5g-512x512-d3edd69c7c0a.jpg",
     "added": "2026-10-17T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/b0/f3/65b0f3d9-9882-b43c-bb57-463b0849bf83/mzaf_10506361393973474378.plus.aac.p.m4a"
+  },
+  "hellsgreatestdad": {
+    "id": "hellsgreatestdad",
+    "song": "Hell's Greatest Dad",
+    "artist": "Hazbin Hotel",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 120,
+    "duration": 135,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 5,
+      "bass": 5,
+      "drums": 4,
+      "plasticVocals": 4,
+      "plasticGuitar": 5,
+      "plasticBass": 5,
+      "plasticDrums": 4
+    },
+    "key": "E",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/f4w8qqkq71ctgu7e-512x512-696ef6f9ed99.jpg",
+    "added": "2026-10-18T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/92/68/62/926862a3-9212-21fa-c06c-6264c26d241a/mzaf_10782510348416799879.plus.aac.p.m4a"
+  },
+  "happydayinhell": {
+    "id": "happydayinhell",
+    "song": "Happy Day in Hell",
+    "artist": "Hazbin Hotel",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 140,
+    "duration": 178,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 5,
+      "bass": 2,
+      "drums": 2,
+      "plasticVocals": 5,
+      "plasticGuitar": 5,
+      "plasticBass": 2,
+      "plasticDrums": 2
+    },
+    "key": "F",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/tlhncrogo5z785sf-512x512-6ec1a8d56196.jpg",
+    "added": "2026-10-18T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/55/82/54/55825491-dc87-8d49-7a3b-2ce178b59760/mzaf_9831251026690483247.plus.aac.p.m4a"
   }
 }
