@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-16T13:14:22.169Z"
+    "lastUpdated": "2026-10-20T17:15:16.986Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -19901,5 +19901,57 @@
     "albumArt": "https://cdn2.unrealengine.com/tlhncrogo5z785sf-512x512-6ec1a8d56196.jpg",
     "added": "2026-10-18T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/55/82/54/55825491-dc87-8d49-7a3b-2ce178b59760/mzaf_9831251026690483247.plus.aac.p.m4a"
+  },
+  "kryptonite2": {
+    "id": "kryptonite2",
+    "song": "Kryptonite",
+    "artist": "Ken Carson",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 152,
+    "duration": 170,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 2,
+      "bass": 0,
+      "drums": 3,
+      "plasticVocals": 0,
+      "plasticGuitar": 2,
+      "plasticBass": 0,
+      "plasticDrums": 3
+    },
+    "key": "Ab",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/ysizne2kwxu13aft-512x512-67ee462c9b77.jpg",
+    "added": "2026-10-24T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/26/9e/32/269e324f-20c6-69ad-e29c-51110d80b853/mzaf_16675952614198515988.plus.aac.p.m4a"
+  },
+  "suavemente": {
+    "id": "suavemente",
+    "song": "Suavemente",
+    "artist": "Elvis Crespo",
+    "album": "",
+    "releaseYear": 1998,
+    "bpm": 124,
+    "duration": 270,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 3,
+      "drums": 4,
+      "plasticVocals": 4,
+      "plasticGuitar": 4,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "C",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/kvjbwwkuu9e6owgv-512x512-9954f587581c.jpg",
+    "added": "2026-10-24T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/26/81/e9/2681e924-ffbe-4c44-6138-e71a6e1f5381/mzaf_12647945363787259301.plus.aac.p.m4a"
   }
 }
