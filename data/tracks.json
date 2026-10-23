@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-22T14:15:46.619Z"
+    "lastUpdated": "2026-10-23T13:13:48.795Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20109,5 +20109,57 @@
     "albumArt": "https://cdn2.unrealengine.com/hg89jveiwrhx0zl8-512x512-5c31c5ebbd0f.jpg",
     "added": "2026-10-25T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9d/b9/e6/9db9e67b-a6de-0b73-59c6-dd78ef3849d3/mzaf_97724682222454035.plus.aac.p.m4a"
+  },
+  "jumpintheline": {
+    "id": "jumpintheline",
+    "song": "Jump in the Line",
+    "artist": "Harry Belafonte",
+    "album": "",
+    "releaseYear": 1961,
+    "bpm": 116,
+    "duration": 226,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 3,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 3
+    },
+    "key": "F",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/rcefqufy7dlsodo8-512x512-8b5f902a7c5a.jpg",
+    "added": "2026-10-25T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f4/3d/b5/f43db55f-1cb0-57c8-9d81-b60499638862/mzaf_5053021041073402841.plus.aac.p.m4a"
+  },
+  "bananaboat": {
+    "id": "bananaboat",
+    "song": "Banana Boat (Day-O)",
+    "artist": "Harry Belafonte",
+    "album": "",
+    "releaseYear": 1956,
+    "bpm": 121,
+    "duration": 188,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 99,
+      "bass": 1,
+      "drums": 1,
+      "plasticVocals": 4,
+      "plasticGuitar": 99,
+      "plasticBass": 1,
+      "plasticDrums": 1
+    },
+    "key": "F",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/8jpmk3n6upqqqq3w-512x512-d2da3b24cafb.jpg",
+    "added": "2026-10-25T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/03/70/ec/0370ecf6-f2a6-b4e4-694c-f1080e8e053f/mzaf_7291528452748600159.plus.aac.p.m4a"
   }
 }
