@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-10-23T13:13:48.795Z"
+    "lastUpdated": "2026-11-01T08:11:51.661Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20161,5 +20161,57 @@
     "albumArt": "https://cdn2.unrealengine.com/8jpmk3n6upqqqq3w-512x512-d2da3b24cafb.jpg",
     "added": "2026-10-25T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/03/70/ec/0370ecf6-f2a6-b4e4-694c-f1080e8e053f/mzaf_7291528452748600159.plus.aac.p.m4a"
+  },
+  "fortunesend": {
+    "id": "fortunesend",
+    "song": "Fortune's End",
+    "artist": "Epic Games",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 120,
+    "duration": 156,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 4,
+      "bass": 1,
+      "drums": 3,
+      "plasticVocals": 3,
+      "plasticGuitar": 4,
+      "plasticBass": 1,
+      "plasticDrums": 3
+    },
+    "key": "Gb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/dnnpeuhowviatfrt-512x512-3f2db2422274.jpg",
+    "added": "2026-11-03T00:00:00.000Z",
+    "previewUrl": null
+  },
+  "solongimleaving": {
+    "id": "solongimleaving",
+    "song": "So Long, I'm Leaving",
+    "artist": "The Home Of Happy",
+    "album": "",
+    "releaseYear": 2021,
+    "bpm": 142,
+    "duration": 177,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 6,
+      "bass": 1,
+      "drums": 0,
+      "plasticVocals": 2,
+      "plasticGuitar": 5,
+      "plasticBass": 1,
+      "plasticDrums": 0
+    },
+    "key": "E",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/jstihrnskdv8qnqs-512x512-a6fe51069a43.jpg",
+    "added": "2026-11-03T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f4/30/93/f43093d9-a0c9-9003-4fcc-586fc7637018/mzaf_8017864876273150122.plus.aac.p.m4a"
   }
 }
