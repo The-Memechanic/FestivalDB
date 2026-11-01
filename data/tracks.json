@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-01T08:11:51.661Z"
+    "lastUpdated": "2026-11-01T14:08:10.812Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20213,5 +20213,31 @@
     "albumArt": "https://cdn2.unrealengine.com/jstihrnskdv8qnqs-512x512-a6fe51069a43.jpg",
     "added": "2026-11-03T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f4/30/93/f43093d9-a0c9-9003-4fcc-586fc7637018/mzaf_8017864876273150122.plus.aac.p.m4a"
+  },
+  "notrespassing": {
+    "id": "notrespassing",
+    "song": "NO TRESPASSING",
+    "artist": "A$AP Rocky",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 95,
+    "duration": 202,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 1,
+      "bass": 0,
+      "drums": 2,
+      "plasticVocals": 0,
+      "plasticGuitar": 1,
+      "plasticBass": 0,
+      "plasticDrums": 2
+    },
+    "key": "C",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/rphtpwqemookgrpr-512x512-4ed6c373f947.jpg",
+    "added": "2026-11-03T00:00:00.000Z",
+    "previewUrl": null
   }
 }
