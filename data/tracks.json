@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-02T14:11:34.955Z"
+    "lastUpdated": "2026-11-05T14:10:57.929Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20239,5 +20239,83 @@
     "albumArt": "https://cdn2.unrealengine.com/rphtpwqemookgrpr-512x512-4ed6c373f947.jpg",
     "added": "2026-11-03T00:00:00.000Z",
     "previewUrl": null
+  },
+  "grim": {
+    "id": "grim",
+    "song": "GRIM FREESTYLE",
+    "artist": "A$AP Rocky",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 132,
+    "duration": 220,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 1,
+      "bass": 0,
+      "drums": 1,
+      "plasticVocals": 1,
+      "plasticGuitar": 1,
+      "plasticBass": 0,
+      "plasticDrums": 1
+    },
+    "key": "C",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/d4emuuy7flxjpzav-512x512-ae100e968ca8.jpg",
+    "added": "2026-11-07T00:00:00.000Z",
+    "previewUrl": null
+  },
+  "riot": {
+    "id": "riot",
+    "song": "RIOT (Rowdy Pipe’n)",
+    "artist": "A$AP Rocky",
+    "album": "",
+    "releaseYear": 2023,
+    "bpm": 120,
+    "duration": 193,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 0,
+      "bass": 0,
+      "drums": 2,
+      "plasticVocals": 0,
+      "plasticGuitar": 1,
+      "plasticBass": 0,
+      "plasticDrums": 2
+    },
+    "key": "F",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/i6yrnm0xicidbp1d-512x512-2a769f71b58b.jpg",
+    "added": "2026-11-07T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c1/2f/cf/c12fcf73-3001-73cf-34fd-8360b94cbba6/mzaf_3841779114831281220.plus.aac.p.m4a"
+  },
+  "lordprettyflacko": {
+    "id": "lordprettyflacko",
+    "song": "Lord Pretty Flacko Jodye 2 (LPFJ2)",
+    "artist": "A$AP Rocky",
+    "album": "",
+    "releaseYear": 2015,
+    "bpm": 104,
+    "duration": 128,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 1,
+      "bass": 1,
+      "drums": 1,
+      "plasticVocals": 0,
+      "plasticGuitar": 0,
+      "plasticBass": 1,
+      "plasticDrums": 0
+    },
+    "key": "Eb",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/6luqelt8hm34qkpr-512x512-adeccfd2f8ea.jpg",
+    "added": "2026-11-07T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/db/51/d1db515d-9b45-9332-bbed-ad37a112c6cc/mzaf_9220303501924859718.plus.aac.p.m4a"
   }
 }
