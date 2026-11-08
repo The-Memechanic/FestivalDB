@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-05T14:10:57.929Z"
+    "lastUpdated": "2026-11-08T14:08:10.137Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20317,5 +20317,31 @@
     "albumArt": "https://cdn2.unrealengine.com/6luqelt8hm34qkpr-512x512-adeccfd2f8ea.jpg",
     "added": "2026-11-07T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/d1/db/51/d1db515d-9b45-9332-bbed-ad37a112c6cc/mzaf_9220303501924859718.plus.aac.p.m4a"
+  },
+  "london": {
+    "id": "london",
+    "song": "London",
+    "artist": "Lil Uzi Vert",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 143,
+    "duration": 197,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 1,
+      "drums": 4,
+      "plasticVocals": 1,
+      "plasticGuitar": 3,
+      "plasticBass": 1,
+      "plasticDrums": 4
+    },
+    "key": "Ab",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/hceuaewt2m7gqd2u-512x512-02ef6cf260af.jpg",
+    "added": "2026-11-10T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f7/ae/f8/f7aef82e-0b87-b1b4-3409-d22c087bc407/mzaf_15793654300926951944.plus.aac.p.m4a"
   }
 }
