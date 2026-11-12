@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-08T14:08:10.137Z"
+    "lastUpdated": "2026-11-12T09:11:02.421Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20343,5 +20343,109 @@
     "albumArt": "https://cdn2.unrealengine.com/hceuaewt2m7gqd2u-512x512-02ef6cf260af.jpg",
     "added": "2026-11-10T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f7/ae/f8/f7aef82e-0b87-b1b4-3409-d22c087bc407/mzaf_15793654300926951944.plus.aac.p.m4a"
+  },
+  "shutupanddance": {
+    "id": "shutupanddance",
+    "song": "Shut Up and Dance",
+    "artist": "WALK THE MOON",
+    "album": "",
+    "releaseYear": 2014,
+    "bpm": 128,
+    "duration": 201,
+    "difficulty": {
+      "vocals": 3,
+      "guitar": 3,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 3,
+      "plasticGuitar": 3,
+      "plasticBass": 2,
+      "plasticDrums": 4
+    },
+    "key": "Db",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/1pjrhr0qc4ixqmmk-512x512-68fc3b3abe73.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fa/37/b0/fa37b02c-cccc-7ccb-3161-39a5f4c2d4e8/mzaf_1832266719592545746.plus.aac.p.m4a"
+  },
+  "chroniclesofdestiny": {
+    "id": "chroniclesofdestiny",
+    "song": "Chronicles of Destiny",
+    "artist": "The Home Of Happy, James Corbin",
+    "album": "",
+    "releaseYear": 2023,
+    "bpm": 133,
+    "duration": 124,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 5,
+      "bass": 4,
+      "drums": 4,
+      "plasticVocals": 99,
+      "plasticGuitar": 5,
+      "plasticBass": 4,
+      "plasticDrums": 4
+    },
+    "key": "G",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/wo9q69eaned71amc-512x512-1ee2ba35257e.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview126/v4/f3/73/16/f373168e-1136-8e62-b5f7-37df82b14b2b/mzaf_7907111743349875977.plus.aac.p.m4a"
+  },
+  "sasen": {
+    "id": "sasen",
+    "song": "Sa-Sen!",
+    "artist": "MONT, Risa, Musashi",
+    "album": "",
+    "releaseYear": 2024,
+    "bpm": 142,
+    "duration": 219,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 4,
+      "bass": 4,
+      "drums": 4,
+      "plasticVocals": 4,
+      "plasticGuitar": 4,
+      "plasticBass": 4,
+      "plasticDrums": 4
+    },
+    "key": "E",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/knx2f1jcviybytlc-512x512-208b9699148a.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": null
+  },
+  "birdbrain": {
+    "id": "birdbrain",
+    "song": "BIRDBRAIN",
+    "artist": "Jamie Paige, OK Glass ft. Kasane Teto",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 160,
+    "duration": 260,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 4,
+      "bass": 4,
+      "drums": 4,
+      "plasticVocals": 5,
+      "plasticGuitar": 4,
+      "plasticBass": 4,
+      "plasticDrums": 4
+    },
+    "key": "G",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/soegwnbpbwupizio-512x512-e91b78c7437d.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": null
   }
 }
