@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-12T09:11:02.421Z"
+    "lastUpdated": "2026-11-12T14:10:57.414Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20447,5 +20447,83 @@
     "albumArt": "https://cdn2.unrealengine.com/soegwnbpbwupizio-512x512-e91b78c7437d.jpg",
     "added": "2026-11-14T00:00:00.000Z",
     "previewUrl": null
+  },
+  "poured": {
+    "id": "poured",
+    "song": "Poured",
+    "artist": "Lil Uzi Vert",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 141,
+    "duration": 188,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 1,
+      "drums": 4,
+      "plasticVocals": 2,
+      "plasticGuitar": 3,
+      "plasticBass": 1,
+      "plasticDrums": 4
+    },
+    "key": "Db",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/mt1gdkjvmmcbqzth-512x512-255a0dc4f6b9.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/f0/62/19/f0621933-3579-8aea-b7c8-fd933834bb8b/mzaf_3983359872922172908.plus.aac.p.m4a"
+  },
+  "sayitwas": {
+    "id": "sayitwas",
+    "song": "Say It Was",
+    "artist": "Lil Uzi Vert",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 138,
+    "duration": 159,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 5,
+      "bass": 1,
+      "drums": 3,
+      "plasticVocals": 4,
+      "plasticGuitar": 5,
+      "plasticBass": 1,
+      "plasticDrums": 3
+    },
+    "key": "G",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/vyjegym0v5oqv2hd-512x512-4f22d1f094d8.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/27/9e/db/279edb0d-a7eb-9a39-4eb9-ea5f9fa463f2/mzaf_13620404235992989494.plus.aac.p.m4a"
+  },
+  "whatyousaying": {
+    "id": "whatyousaying",
+    "song": "What You Saying",
+    "artist": "Lil Uzi Vert",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 133,
+    "duration": 136,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 0,
+      "drums": 0,
+      "plasticVocals": 4,
+      "plasticGuitar": 2,
+      "plasticBass": 0,
+      "plasticDrums": 0
+    },
+    "key": "B",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/sfa1joudt9xeroyz-512x512-ba8b6f48807e.jpg",
+    "added": "2026-11-14T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/02/56/1e/02561ef8-d626-1931-4a82-90ed10f08e32/mzaf_9356804864714937816.plus.aac.p.m4a"
   }
 }
