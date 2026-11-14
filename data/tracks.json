@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-12T14:10:57.414Z"
+    "lastUpdated": "2026-11-14T14:08:22.564Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20525,5 +20525,31 @@
     "albumArt": "https://cdn2.unrealengine.com/sfa1joudt9xeroyz-512x512-ba8b6f48807e.jpg",
     "added": "2026-11-14T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/02/56/1e/02561ef8-d626-1931-4a82-90ed10f08e32/mzaf_9356804864714937816.plus.aac.p.m4a"
+  },
+  "connectcommune": {
+    "id": "connectcommune",
+    "song": "CONNECT:COMMUNE",
+    "artist": "FLAVOR FOLEY ft. Hatsune Miku",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 156,
+    "duration": 232,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 6,
+      "bass": 5,
+      "drums": 4,
+      "plasticVocals": 5,
+      "plasticGuitar": 6,
+      "plasticBass": 5,
+      "plasticDrums": 4
+    },
+    "key": "C",
+    "mode": "Major",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/gjscdgffpqj4wrj2-512x512-85c90a3e8f34.jpg",
+    "added": "2026-11-16T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b6/cb/c7/b6cbc792-d398-0e04-95c1-314100215fd9/mzaf_14320515542208995469.plus.aac.p.m4a"
   }
 }
