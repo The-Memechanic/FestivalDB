@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-14T14:08:22.564Z"
+    "lastUpdated": "2026-11-15T14:08:35.306Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20551,5 +20551,31 @@
     "albumArt": "https://cdn2.unrealengine.com/gjscdgffpqj4wrj2-512x512-85c90a3e8f34.jpg",
     "added": "2026-11-16T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b6/cb/c7/b6cbc792-d398-0e04-95c1-314100215fd9/mzaf_14320515542208995469.plus.aac.p.m4a"
+  },
+  "pppp": {
+    "id": "pppp",
+    "song": "PPPP",
+    "artist": "TAK ft. Hatsune Miku and Kasane Teto",
+    "album": "",
+    "releaseYear": 2025,
+    "bpm": 152,
+    "duration": 157,
+    "difficulty": {
+      "vocals": 4,
+      "guitar": 3,
+      "bass": 3,
+      "drums": 4,
+      "plasticVocals": 4,
+      "plasticGuitar": 3,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "A",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/xwlaf5m2dbbtcnld-512x512-a1456440d2f0.jpg",
+    "added": "2026-11-17T00:00:00.000Z",
+    "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/95/22/ad/9522adc0-4a29-a924-176d-16d3de3f454c/mzaf_1647017895757422119.plus.aac.p.m4a"
   }
 }
