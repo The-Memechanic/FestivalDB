@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-18T15:09:27.545Z"
+    "lastUpdated": "2026-11-19T15:09:31.227Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -20603,5 +20603,31 @@
     "albumArt": "https://cdn2.unrealengine.com/eqav6amhfg9svzaq-512x512-db8f37021158.jpg",
     "added": "2026-11-20T00:00:00.000Z",
     "previewUrl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bc/f7/7f/bcf77f57-ea7e-e483-aa46-6cb919eee7e5/mzaf_16548890274351085831.plus.aac.p.m4a"
+  },
+  "yearofthebeast": {
+    "id": "yearofthebeast",
+    "song": "Year of the Beast",
+    "artist": "Epic Games",
+    "album": "",
+    "releaseYear": 2026,
+    "bpm": 140,
+    "duration": 145,
+    "difficulty": {
+      "vocals": 5,
+      "guitar": 5,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 0,
+      "plasticGuitar": 5,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "D",
+    "mode": "Minor",
+    "genres": [],
+    "gameplayTags": [],
+    "albumArt": "https://cdn2.unrealengine.com/bsoan4s9szxywded-512x512-0b1bcef4750f.jpg",
+    "added": "2026-11-21T00:00:00.000Z",
+    "previewUrl": null
   }
 }
