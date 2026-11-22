@@ -162,16 +162,21 @@ function DifficultyBadges({
   if (entries.length === 0) return null;
 
   return (
-    <div className="flex flex-col gap-3">
-      <button
-        type="button"
-        aria-pressed={individualColors}
-        onClick={() => onIndividualColorsChange(!individualColors)}
-        className="self-end rounded-md border border-border bg-bg px-2 py-1 text-xs text-text-muted transition hover:bg-bg-dark"
-      >
-        {individualColors ? "Color by Difficulty" : "Individual Colors"}
-      </button>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+    <div className="flex w-full flex-col gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <span className="text-sm font-semibold text-text-muted">
+          Main Stage Difficulties
+        </span>
+        <button
+          type="button"
+          aria-pressed={individualColors}
+          onClick={() => onIndividualColorsChange(!individualColors)}
+          className="rounded-md border border-border bg-bg px-2 py-1 text-xs text-text-muted transition hover:bg-bg-dark"
+        >
+          {individualColors ? "Color by Difficulty" : "Individual Colors"}
+        </button>
+      </div>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4 lg:grid-cols-4">
         {entries.map((key) => {
           const rawValue = Number(difficulty[key]);
           const displayValue = rawValue + DIFFICULTY_DISPLAY_OFFSET;
@@ -321,65 +326,67 @@ export default function TrackPage() {
           </div>
         ) : (
           <div className="overflow-hidden rounded-xl border border-border-muted bg-bg-light shadow-sm">
-            <div className="flex flex-col gap-5 p-6 lg:flex-row lg:items-stretch">
-              {track.albumArt ? (
-                <img
-                  src={track.albumArt}
-                  alt={track.song || "Album art"}
-                  className="h-64 w-64 flex-shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-border-muted/30"
-                />
-              ) : (
-                <div className="flex h-64 w-64 flex-shrink-0 items-center justify-center rounded-lg bg-bg-dark text-2xl font-semibold text-text">
-                  ★
-                </div>
-              )}
-              <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-between">
-                <div className="flex h-64 flex-1 flex-col justify-between gap-3">
-                  <div>
-                    <h1 className="text-2xl font-semibold text-text">
-                      {track.song || "Untitled track"}
-                    </h1>
-                    <p className="text-text-muted">
-                      {track.artist || "Unknown artist"}
-                    </p>
+            <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(12rem,0.28fr)]">
+              <section className="flex flex-col gap-5 p-6">
+                <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
+                  {track.albumArt ? (
+                    <img
+                      src={track.albumArt}
+                      alt={track.song || "Album art"}
+                      className="h-64 w-64 flex-shrink-0 rounded-lg object-cover shadow-sm ring-1 ring-border-muted/30"
+                    />
+                  ) : (
+                    <div className="flex h-64 w-64 flex-shrink-0 items-center justify-center rounded-lg bg-bg-dark text-2xl font-semibold text-text">
+                      ★
+                    </div>
+                  )}
+                  <div className="flex h-64 min-w-0 flex-1 flex-col justify-between gap-3">
+                    <div>
+                      <h1 className="text-2xl font-semibold text-text">
+                        {track.song || "Untitled track"}
+                      </h1>
+                      <p className="text-text-muted">
+                        {track.artist || "Unknown artist"}
+                      </p>
+                    </div>
+
+                    <AudioPlayer trackId={track.id} hasPreview={Boolean(track.previewId)} />
                   </div>
-
-                  <AudioPlayer trackId={track.id} hasPreview={Boolean(track.previewId)} />
                 </div>
 
-                <div className="flex h-64 items-center lg:border-l lg:border-border-muted lg:pl-6">
+                <div className="flex w-full items-center">
                   <DifficultyBadges
                     difficulty={track.difficulty as unknown as Record<string, unknown>}
                     individualColors={individualPipColors}
                     onIndividualColorsChange={updatePipColorPreference}
                   />
                 </div>
-              </div>
+              </section>
+
+              <dl className="grid min-w-0 grid-cols-2 gap-x-6 gap-y-4 border-t border-border-muted p-6 text-left lg:grid-cols-1 lg:border-l lg:border-t-0">
+                {details.map(([key, value]) => {
+                  let displayValue: string;
+                  if (key === "duration") {
+                    displayValue = formatDuration(value);
+                  } else if (["lastModified", "activeDate", "newUntilDate"].includes(key)) {
+                    displayValue = formatDate(value);
+                  } else {
+                    displayValue = formatValue(value);
+                  }
+
+                  return (
+                    <div key={key}>
+                      <dt className="text-xs font-medium uppercase tracking-wide text-text-muted">
+                        {formatLabel(key)}
+                      </dt>
+                      <dd className="mt-1 text-sm text-text">
+                        {displayValue}
+                      </dd>
+                    </div>
+                  );
+                })}
+              </dl>
             </div>
-
-            <dl className="grid grid-cols-1 gap-x-6 gap-y-4 border-t border-border-muted p-6 sm:grid-cols-2">
-              {details.map(([key, value]) => {
-                let displayValue: string;
-                if (key === "duration") {
-                  displayValue = formatDuration(value);
-                } else if (["lastModified", "activeDate", "newUntilDate"].includes(key)) {
-                  displayValue = formatDate(value);
-                } else {
-                  displayValue = formatValue(value);
-                }
-
-                return (
-                  <div key={key}>
-                    <dt className="text-xs font-medium uppercase tracking-wide text-text-muted">
-                      {formatLabel(key)}
-                    </dt>
-                    <dd className="mt-1 text-sm text-text">
-                      {displayValue}
-                    </dd>
-                  </div>
-                );
-              })}
-            </dl>
           </div>
         )}
       </div>

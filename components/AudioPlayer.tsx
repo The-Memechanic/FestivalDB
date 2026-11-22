@@ -17,66 +17,32 @@ export function AudioPlayer({
   hasPreview: boolean;
 }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [loadingPreview, setLoadingPreview] = useState(hasPreview);
-  const [previewLoadError, setPreviewLoadError] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playbackError, setPlaybackError] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
-    let objectUrl: string | null = null;
-
-    setPreviewUrl(null);
     setLoadingPreview(hasPreview);
-    setPreviewLoadError(null);
-
-    if (!hasPreview) return;
-
-    fetch(`/api/preview/${encodeURIComponent(trackId)}`)
-      .then(async (response) => {
-        if (!response.ok) {
-          throw new Error(`Preview request failed (${response.status}).`);
-        }
-        return response.blob();
-      })
-      .then((preview) => {
-        if (cancelled) return;
-        objectUrl = URL.createObjectURL(preview);
-        setPreviewUrl(objectUrl);
-        setLoadingPreview(false);
-      })
-      .catch((err: unknown) => {
-        if (cancelled) return;
-        setPreviewLoadError(
-          err instanceof Error ? err.message : "Could not load this preview."
-        );
-        setLoadingPreview(false);
-      });
-
-    return () => {
-      cancelled = true;
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    };
-  }, [hasPreview, trackId]);
-
-  useEffect(() => {
     setPlaying(false);
     setCurrentTime(0);
     setDuration(0);
     setPlaybackError(null);
     audioRef.current = null;
 
-    if (!previewUrl) return;
+    if (!hasPreview) return;
 
     const audio = new Audio();
     audio.preload = "metadata";
     audioRef.current = audio;
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
-    const handleLoadedMetadata = () => setDuration(audio.duration || 0);
+    const handleLoadedMetadata = () => {
+      setDuration(audio.duration || 0);
+      setLoadingPreview(false);
+    };
+    const handleCanPlay = () => setLoadingPreview(false);
     const handleEnded = () => {
       setPlaying(false);
       setCurrentTime(0);
@@ -84,30 +50,33 @@ export function AudioPlayer({
     const handlePlaying = () => setPlaying(true);
     const handlePause = () => setPlaying(false);
     const handleError = () => {
+      setLoadingPreview(false);
       setPlaying(false);
       setPlaybackError("This preview is unavailable or your browser can't play it.");
     };
 
     audio.addEventListener("timeupdate", handleTimeUpdate);
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+    audio.addEventListener("canplay", handleCanPlay);
     audio.addEventListener("ended", handleEnded);
     audio.addEventListener("playing", handlePlaying);
     audio.addEventListener("pause", handlePause);
     audio.addEventListener("error", handleError);
-    audio.src = previewUrl;
+    audio.src = `/api/preview/${encodeURIComponent(trackId)}`;
     audio.load();
 
     return () => {
       audio.pause();
       audio.removeEventListener("timeupdate", handleTimeUpdate);
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      audio.removeEventListener("canplay", handleCanPlay);
       audio.removeEventListener("ended", handleEnded);
       audio.removeEventListener("playing", handlePlaying);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("error", handleError);
       if (audioRef.current === audio) audioRef.current = null;
     };
-  }, [previewUrl]);
+  }, [hasPreview, trackId]);
 
   if (!hasPreview) {
     return (
@@ -128,14 +97,6 @@ export function AudioPlayer({
           className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
         />
         Loading preview…
-      </span>
-    );
-  }
-
-  if (previewLoadError || !previewUrl) {
-    return (
-      <span role="status" className="self-start rounded-lg bg-bg-light px-4 py-2 text-sm font-medium text-text-muted">
-        {previewLoadError ? "Preview unavailable" : "No preview available"}
       </span>
     );
   }
@@ -219,7 +180,7 @@ export function AudioPlayer({
         </div>
 
         <a
-          href={previewUrl}
+          href={`/api/preview/${encodeURIComponent(trackId)}`}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Download preview"

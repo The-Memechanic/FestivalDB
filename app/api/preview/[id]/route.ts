@@ -8,7 +8,34 @@ export const maxDuration = 60;
 const PREVIEW_API = "https://cdn.qstv.on.epicgames.com/";
 const MAX_MANIFEST_BYTES = 1024 * 1024;
 const MAX_PREVIEW_BYTES = 20 * 1024 * 1024;
-const PREVIEW_HOSTS = new Set(["fortnite-vod.akamaized.net"]);
+const PREVIEW_HOSTS = new Set([
+  "fortnite-vod.akamaized.net",
+  "pilgrim.qstv.on.epicgames.com",
+]);
+
+function isTemporaryDnsFailure(error: unknown): boolean {
+  let current = error;
+  while (current && typeof current === "object") {
+    const cause = current as { cause?: unknown; code?: unknown };
+    if (cause.code === "EAI_AGAIN") return true;
+    current = cause.cause;
+  }
+  return false;
+}
+
+async function fetchWithDnsRetry(url: string | URL): Promise<Response> {
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await fetch(url, {
+        signal: AbortSignal.timeout(20_000),
+        cache: "no-store",
+      });
+    } catch (error) {
+      if (!isTemporaryDnsFailure(error) || attempt >= 2) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+    }
+  }
+}
 
 function getPreviewMediaUrl(manifest: string): URL {
   const baseUrls = Array.from(
@@ -51,9 +78,8 @@ export async function GET(
       );
     }
 
-    const previewResponse = await fetch(
-      PREVIEW_API + encodeURIComponent(track.previewId),
-      { signal: AbortSignal.timeout(20_000), cache: "no-store" }
+    const previewResponse = await fetchWithDnsRetry(
+      PREVIEW_API + encodeURIComponent(track.previewId)
     );
     if (!previewResponse.ok) {
       throw new Error(`Preview provider returned ${previewResponse.status}.`);
@@ -75,10 +101,7 @@ export async function GET(
     }
 
     const mediaUrl = getPreviewMediaUrl(manifest);
-    const mediaResponse = await fetch(mediaUrl, {
-      signal: AbortSignal.timeout(20_000),
-      cache: "no-store",
-    });
+    const mediaResponse = await fetchWithDnsRetry(mediaUrl);
     if (!mediaResponse.ok || !mediaResponse.body) {
       throw new Error(`Preview media returned ${mediaResponse.status}.`);
     }
