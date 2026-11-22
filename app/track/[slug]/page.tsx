@@ -8,16 +8,16 @@ import { getTrackSlug, matchesTrackSlug } from "@/lib/trackSlug";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { formatKeyLabel } from "@/lib/musicKey";
 
-const HIDDEN_KEYS = new Set([
-  "song",
-  "artist",
-  "albumArt",
-  "id",
-  "key",
-  "mode",
-  "difficulty",
-  "gameplayTags",
-  "previewUrl",
+const DETAIL_KEYS = new Set([
+  "duration",
+  "bpm",
+  "releaseYear",
+  "lastModified",
+  "activeDate",
+  "newUntilDate",
+  "album",
+  "genres",
+  "esrbRating",
 ]);
 
 const DETAIL_ORDER = [
@@ -25,25 +25,38 @@ const DETAIL_ORDER = [
   "key",
   "bpm",
   "releaseYear",
-  "added",
+  "lastModified",
+  "activeDate",
+  "newUntilDate",
   "album",
   "genres",
+  "esrbRating",
 ] as const;
 
 const DIFFICULTY_ORDER = [
   "vocals",
-  "guitar",
-  "bass",
-  "drums",
   "plasticVocals",
+  "guitar",
   "plasticGuitar",
+  "bass",
   "plasticBass",
+  "drums",
   "plasticDrums",
 ] as const;
 
 const DIFFICULTY_MAX = 7;
 const DIFFICULTY_DISPLAY_OFFSET = 1; // raw API 0–6 -> displayed 1–7
 const UNSUPPORTED_DIFFICULTY = 99;
+const PIP_COLOR_PREFERENCE_KEY = "festivaldb-individual-difficulty-pip-colors";
+const DIFFICULTY_PIP_COLORS = [
+  "bg-emerald-500",
+  "bg-lime-500",
+  "bg-yellow-400",
+  "bg-amber-500",
+  "bg-orange-500",
+  "bg-rose-500",
+  "bg-red-600",
+];
 
 const LABEL_OVERRIDES: Record<string, string> = {
   plasticVocals: "Pro Vocals",
@@ -54,9 +67,12 @@ const LABEL_OVERRIDES: Record<string, string> = {
   key: "Key",
   bpm: "BPM",
   releaseYear: "Release Year",
-  added: "Added In Game",
+  lastModified: "Last Modified",
+  activeDate: "Active Date",
+  newUntilDate: "New Until",
   album: "Album",
   genres: "Genres",
+  esrbRating: "ESRB Rating",
 };
 
 const formatLabel = (key: string) => {
@@ -89,38 +105,41 @@ const formatDuration = (seconds: unknown): string => {
   return `${minutes}:${secs.toString().padStart(2, "0")}`;
 };
 
-const formatAddedDate = (value: unknown): string => {
+const formatDate = (value: unknown): string => {
   if (typeof value !== "string") return "—";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "—";
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 };
 
-// Three-stop gradient across the semantic status colors (success -> warning -> danger)
-// rather than a hardcoded neutral color ramp, so it follows the palette too.
-const difficultyColor = (displayValue: number): string => {
-  if (displayValue <= 2) return "bg-success";
-  if (displayValue <= 4) return "bg-warning";
-  return "bg-danger";
-};
-
-function DifficultyDots({ value }: { value: number }) {
+function DifficultyDots({
+  value,
+  individualColors,
+}: {
+  value: number;
+  individualColors: boolean;
+}) {
   const displayValue = value + DIFFICULTY_DISPLAY_OFFSET;
   const filled =
     value === UNSUPPORTED_DIFFICULTY
       ? 0
       : Math.max(0, Math.min(DIFFICULTY_MAX, displayValue));
+  const difficultyColor = DIFFICULTY_PIP_COLORS[filled - 1];
   return (
     <div className="flex items-center gap-1">
       {Array.from({ length: DIFFICULTY_MAX }).map((_, i) => (
         <span
           key={i}
           className={`h-3.5 w-3.5 shrink-0 rounded-full ${
-            i < filled ? difficultyColor(filled) : "bg-border-muted"
+            i < filled
+              ? individualColors
+                ? DIFFICULTY_PIP_COLORS[i]
+                : difficultyColor
+              : "bg-border-muted"
           }`}
         />
       ))}
@@ -128,7 +147,15 @@ function DifficultyDots({ value }: { value: number }) {
   );
 }
 
-function DifficultyBadges({ difficulty }: { difficulty: Record<string, unknown> }) {
+function DifficultyBadges({
+  difficulty,
+  individualColors,
+  onIndividualColorsChange,
+}: {
+  difficulty: Record<string, unknown>;
+  individualColors: boolean;
+  onIndividualColorsChange: (value: boolean) => void;
+}) {
   const entries = DIFFICULTY_ORDER.filter(
     (key) => !isEmpty(difficulty[key]) && Number.isFinite(Number(difficulty[key]))
   );
@@ -136,23 +163,33 @@ function DifficultyBadges({ difficulty }: { difficulty: Record<string, unknown> 
   if (entries.length === 0) return null;
 
   return (
-    <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-      {entries.map((key) => {
-        const rawValue = Number(difficulty[key]);
-        const displayValue = rawValue + DIFFICULTY_DISPLAY_OFFSET;
-        const unsupported = rawValue === UNSUPPORTED_DIFFICULTY;
-        return (
-          <div key={key} className="flex flex-col gap-1">
-            <span className="text-sm font-semibold uppercase tracking-wide text-text-muted">
-              {formatLabel(key)}{" "}
-              <span className="text-text-muted/70">
-                {unsupported ? "(N/A)" : `(${displayValue})`}
+    <div className="flex flex-col gap-3">
+      <button
+        type="button"
+        aria-pressed={individualColors}
+        onClick={() => onIndividualColorsChange(!individualColors)}
+        className="self-end rounded-md border border-border-muted px-2 py-1 text-xs text-text-muted transition hover:text-text"
+      >
+        {individualColors ? "Color by Difficulty" : "Individual Colors"}
+      </button>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+        {entries.map((key) => {
+          const rawValue = Number(difficulty[key]);
+          const displayValue = rawValue + DIFFICULTY_DISPLAY_OFFSET;
+          const unsupported = rawValue === UNSUPPORTED_DIFFICULTY;
+          return (
+            <div key={key} className="flex flex-col gap-1">
+              <span className="text-sm font-semibold uppercase tracking-wide text-text-muted">
+                {formatLabel(key)}{" "}
+                <span className="text-text-muted/70">
+                  {unsupported ? "(N/A)" : `(${displayValue})`}
+                </span>
               </span>
-            </span>
-            <DifficultyDots value={rawValue} />
-          </div>
-        );
-      })}
+              <DifficultyDots value={rawValue} individualColors={individualColors} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -164,6 +201,26 @@ export default function TrackPage() {
   const [rows, setRows] = useState<TrackRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [individualPipColors, setIndividualPipColors] = useState(false);
+
+  useEffect(() => {
+    try {
+      setIndividualPipColors(
+        window.localStorage.getItem(PIP_COLOR_PREFERENCE_KEY) === "true"
+      );
+    } catch {
+      // Keep the default color mode when browser storage is unavailable.
+    }
+  }, []);
+
+  const updatePipColorPreference = (individual: boolean) => {
+    setIndividualPipColors(individual);
+    try {
+      window.localStorage.setItem(PIP_COLOR_PREFERENCE_KEY, String(individual));
+    } catch {
+      // The preference still applies for this page even if it cannot be saved.
+    }
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -205,7 +262,7 @@ export default function TrackPage() {
     }
 
     Object.entries(track).forEach(([key, value]) => {
-      if (HIDDEN_KEYS.has(key)) return;
+      if (!DETAIL_KEYS.has(key)) return;
       if (isEmpty(value)) return;
       entries.push([key, value]);
     });
@@ -288,12 +345,14 @@ export default function TrackPage() {
                     </p>
                   </div>
 
-                  <AudioPlayer previewUrl={track.previewUrl} />
+                  <AudioPlayer trackId={track.id} hasPreview={Boolean(track.previewId)} />
                 </div>
 
                 <div className="flex h-64 items-center lg:border-l lg:border-border-muted lg:pl-6">
                   <DifficultyBadges
                     difficulty={track.difficulty as unknown as Record<string, unknown>}
+                    individualColors={individualPipColors}
+                    onIndividualColorsChange={updatePipColorPreference}
                   />
                 </div>
               </div>
@@ -304,8 +363,8 @@ export default function TrackPage() {
                 let displayValue: string;
                 if (key === "duration") {
                   displayValue = formatDuration(value);
-                } else if (key === "added") {
-                  displayValue = formatAddedDate(value);
+                } else if (["lastModified", "activeDate", "newUntilDate"].includes(key)) {
+                  displayValue = formatDate(value);
                 } else {
                   displayValue = formatValue(value);
                 }

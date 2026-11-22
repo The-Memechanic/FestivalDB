@@ -9,12 +9,58 @@ function formatTime(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, "0")}`;
 }
 
-export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
+export function AudioPlayer({
+  trackId,
+  hasPreview,
+}: {
+  trackId: string;
+  hasPreview: boolean;
+}) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [loadingPreview, setLoadingPreview] = useState(hasPreview);
+  const [previewLoadError, setPreviewLoadError] = useState<string | null>(null);
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playbackError, setPlaybackError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let objectUrl: string | null = null;
+
+    setPreviewUrl(null);
+    setLoadingPreview(hasPreview);
+    setPreviewLoadError(null);
+
+    if (!hasPreview) return;
+
+    fetch(`/api/preview/${encodeURIComponent(trackId)}`)
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error(`Preview request failed (${response.status}).`);
+        }
+        return response.blob();
+      })
+      .then((preview) => {
+        if (cancelled) return;
+        objectUrl = URL.createObjectURL(preview);
+        setPreviewUrl(objectUrl);
+        setLoadingPreview(false);
+      })
+      .catch((err: unknown) => {
+        if (cancelled) return;
+        setPreviewLoadError(
+          err instanceof Error ? err.message : "Could not load this preview."
+        );
+        setLoadingPreview(false);
+      });
+
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [hasPreview, trackId]);
 
   useEffect(() => {
     setPlaying(false);
@@ -63,10 +109,33 @@ export function AudioPlayer({ previewUrl }: { previewUrl: string | null }) {
     };
   }, [previewUrl]);
 
-  if (!previewUrl) {
+  if (!hasPreview) {
     return (
       <span className="self-start rounded-lg bg-bg-light px-4 py-2 text-sm font-medium text-text-muted">
         No preview available
+      </span>
+    );
+  }
+
+  if (loadingPreview) {
+    return (
+      <span
+        role="status"
+        className="inline-flex self-start items-center gap-2 rounded-lg bg-bg-light px-4 py-2 text-sm font-medium text-text-muted"
+      >
+        <span
+          aria-hidden="true"
+          className="h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent"
+        />
+        Loading preview…
+      </span>
+    );
+  }
+
+  if (previewLoadError || !previewUrl) {
+    return (
+      <span role="status" className="self-start rounded-lg bg-bg-light px-4 py-2 text-sm font-medium text-text-muted">
+        {previewLoadError ? "Preview unavailable" : "No preview available"}
       </span>
     );
   }

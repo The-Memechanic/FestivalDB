@@ -14,8 +14,12 @@ npm run dev
 
 The application will be available in your browser.
 
-To refresh the track catalog without looking up preview URLs, run:
+To refresh the complete track catalog, run:
 
 ```bash
-npm run update-tracks -- --skip-previews
+npm run update-tracks
 ```
+
+Track previews are generated on demand when a track page is opened. The server
+requires FFmpeg with `libopus` support installed to convert the provider's DASH
+preview into the audio player format.

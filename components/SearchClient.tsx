@@ -352,6 +352,12 @@ export default function SearchClient() {
   }, [rows, searchedRows, sortOption, sortDirection]);
 
   const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+  useEffect(() => {
+    if (!loading && page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [loading, page, totalPages]);
+
   const paginatedResults = useMemo(() => {
     const start = (page - 1) * PAGE_SIZE;
     return results.slice(start, start + PAGE_SIZE);
@@ -380,16 +386,8 @@ export default function SearchClient() {
     });
   }, [query, genreFilter, keyFilter, modeFilter, difficultyFilters, bpmRange, durationRange, durationBounds.max, sortOption, sortDirection, page]);
 
-  useEffect(() => {
-    if (!hasHydratedRef.current) {
-      hasHydratedRef.current = true;
-      return;
-    }
-
-    setPage(1);
-  }, [query, genreFilter, keyFilter, modeFilter, difficultyFilters, bpmRange, durationRange, sortOption, sortDirection]);
-
   const resetFilters = () => {
+    setPage(1);
     setGenreFilter([]);
     setKeyFilter([]);
     setModeFilter([]);
@@ -424,7 +422,10 @@ export default function SearchClient() {
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setPage(1);
+                  setQuery(e.target.value);
+                }}
                 placeholder="Search by song or artist…"
                 className="w-full rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary"
               />
@@ -451,7 +452,10 @@ export default function SearchClient() {
                       <button
                         key={option.value}
                         type="button"
-                        onClick={() => setKeyFilter((current) => toggleValue(current, option.value))}
+                        onClick={() => {
+                          setPage(1);
+                          setKeyFilter((current) => toggleValue(current, option.value));
+                        }}
                         className={`rounded-full border px-2.5 py-1 text-center text-xs font-medium transition ${
                           active
                             ? "border-primary bg-primary text-bg-dark"
@@ -476,7 +480,10 @@ export default function SearchClient() {
                       <button
                         key={option}
                         type="button"
-                        onClick={() => setModeFilter((current) => toggleValue(current, option))}
+                        onClick={() => {
+                          setPage(1);
+                          setModeFilter((current) => toggleValue(current, option));
+                        }}
                         className={`rounded-full border px-2.5 py-1 text-xs font-medium capitalize transition ${
                           active
                             ? "border-primary bg-primary text-bg-dark"
@@ -502,12 +509,13 @@ export default function SearchClient() {
                     <select
                       id={`difficulty-${instrument.key}`}
                       value={difficultyFilters[instrument.key] ?? 0}
-                      onChange={(e) =>
+                      onChange={(e) => {
+                        setPage(1);
                         setDifficultyFilters((current) => ({
                           ...current,
                           [instrument.key]: Number(e.target.value),
-                        }))
-                      }
+                        }));
+                      }}
                       className="rounded-lg border border-border bg-bg px-2 py-1 text-xs text-text focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option value={0}>Any</option>
@@ -537,6 +545,7 @@ export default function SearchClient() {
                   value={bpmRange ? bpmRange[0] : bpmBounds.min}
                   onChange={(e) => {
                     const next = Number(e.target.value);
+                    setPage(1);
                     setBpmRange((current) => {
                       const upper = current ? current[1] : bpmBounds.max;
                       return [Math.min(next, upper), upper];
@@ -552,6 +561,7 @@ export default function SearchClient() {
                   value={bpmRange ? bpmRange[1] : bpmBounds.max}
                   onChange={(e) => {
                     const next = Number(e.target.value);
+                    setPage(1);
                     setBpmRange((current) => {
                       const lower = current ? current[0] : bpmBounds.min;
                       return [lower, Math.max(next, lower)];
@@ -580,6 +590,7 @@ export default function SearchClient() {
                   value={durationRange ? durationRange[0] : durationBounds.min}
                   onChange={(e) => {
                     const next = Number(e.target.value);
+                    setPage(1);
                     setDurationRange((current) => {
                       const upper = current ? current[1] : durationBounds.max;
                       return [Math.min(next, upper), upper];
@@ -595,6 +606,7 @@ export default function SearchClient() {
                   value={durationRange ? durationRange[1] : durationBounds.max}
                   onChange={(e) => {
                     const next = Number(e.target.value);
+                    setPage(1);
                     setDurationRange((current) => {
                       const lower = current ? current[0] : durationBounds.min;
                       return [lower, Math.max(next, lower)];
@@ -614,7 +626,10 @@ export default function SearchClient() {
               <span className="font-medium text-text-muted">Sort:</span>
               <select
                 value={sortOption}
-                onChange={(e) => setSortOption(e.target.value as SortOption)}
+                onChange={(e) => {
+                  setPage(1);
+                  setSortOption(e.target.value as SortOption);
+                }}
                 className="rounded-lg border border-border bg-bg px-2 py-1 text-sm text-text focus:outline-none focus:ring-2 focus:ring-primary"
               >
                 {SORT_OPTIONS.map((option) => (
@@ -626,7 +641,10 @@ export default function SearchClient() {
               {sortOption !== "relevancy" ? (
                 <button
                   type="button"
-                  onClick={() => setSortDirection((current) => (current === "asc" ? "desc" : "asc"))}
+                  onClick={() => {
+                    setPage(1);
+                    setSortDirection((current) => (current === "asc" ? "desc" : "asc"));
+                  }}
                   className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-3 py-1 text-sm text-text-muted hover:bg-bg-dark focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   {sortDirection === "asc" ? "Ascending" : "Descending"}

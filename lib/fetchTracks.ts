@@ -14,20 +14,45 @@ export type TrackDifficulty = {
 
 export type TrackRow = {
   id: string;
+  shortname: string;
   song: string;
   artist: string;
   album: string;
+  placeholderId: string | number | null;
   releaseYear: number | null;
   bpm: number | null;
   duration: number | null;
+  trackNumber: string | number | null;
   difficulty: TrackDifficulty;
   genres: string[];
   gameplayTags: string[];
   albumArt: string;
-  added: string | null;
+  newUntilDate: string | null;
   key: string;
   mode: string;
-  previewUrl: string | null;
+  jamLoopMnemonicCode: string | null;
+  leaderboardEventId: string | number | null;
+  isrc: string | null;
+  esrbRating: string | null;
+  tapVocalsStartingInstrument: string | null;
+  bassStartingInstrument: string | null;
+  drumsStartingInstrument: string | null;
+  guitarStartingInstrument: string | null;
+  lipSyncAssetUrl: string | null;
+  chartUrl: string | null;
+  musicMomentOffset: number | null;
+  questThumbnail: string | null;
+  stageMood: string | null;
+  animationGenre: string | null;
+  countInDuration: number | null;
+  trackType: string | null;
+  noIndex: boolean | null;
+  activeDate: string | null;
+  locale: string | null;
+  templateName: string | null;
+  lastModified: string | null;
+  catalogTitle: string | null;
+  previewId: string | null;
 };
 
 export type TrackDataResponse = {
@@ -64,7 +89,7 @@ export async function fetchTrackData(): Promise<TrackDataResponse> {
   // Remove metadata from the rows
   delete parsed._metadata;
   
-  // Convert the remaining object values to an array of TrackRow
+  // Convert the remaining object values to an array of normalized TrackRow records.
   const rows = Object.values(parsed) as TrackRow[];
   
   return {
