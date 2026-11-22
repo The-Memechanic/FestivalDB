@@ -20,6 +20,5 @@ To refresh the complete track catalog, run:
 npm run update-tracks
 ```
 
-Track previews are generated on demand when a track page is opened. The server
-requires FFmpeg with `libopus` support installed to convert the provider's DASH
-preview into the audio player format.
+Track previews are loaded on demand when a track page is opened and streamed
+from the provider as AAC audio in an MP4 container.

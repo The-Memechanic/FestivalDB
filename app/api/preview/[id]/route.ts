@@ -1,7 +1,3 @@
-import { spawn } from "node:child_process";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import { NextResponse } from "next/server";
 import { fetchTrackData } from "@/lib/fetchTracks";
 
@@ -10,79 +6,39 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const PREVIEW_API = "https://cdn.qstv.on.epicgames.com/";
-const MAX_PREVIEW_BYTES = 8 * 1024 * 1024;
+const MAX_MANIFEST_BYTES = 1024 * 1024;
+const MAX_PREVIEW_BYTES = 20 * 1024 * 1024;
+const PREVIEW_HOSTS = new Set(["fortnite-vod.akamaized.net"]);
 
-function convertPreview(manifestPath: string): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    const ffmpeg = spawn(
-      "ffmpeg",
-      [
-        "-hide_banner",
-        "-loglevel",
-        "error",
-        "-i",
-        manifestPath,
-        "-t",
-        "30",
-        "-vn",
-        "-c:a",
-        "libopus",
-        "-ar",
-        "48000",
-        "-f",
-        "ogg",
-        "pipe:1",
-      ],
-      { stdio: ["ignore", "pipe", "pipe"] }
-    );
+function getPreviewMediaUrl(manifest: string): URL {
+  const baseUrls = Array.from(
+    manifest.matchAll(/<BaseURL\b[^>]*>([\s\S]*?)<\/BaseURL>/gi),
+    (match) => match[1].trim().replaceAll("&amp;", "&")
+  );
+  const rootUrl = baseUrls.find((value) => /^https:\/\//i.test(value));
+  const mediaPath = baseUrls.find((value) => value && !/^https?:\/\//i.test(value));
 
-    const chunks: Buffer[] = [];
-    let byteCount = 0;
-    let stderr = "";
-    let failure: Error | null = null;
-    const timeout = setTimeout(() => {
-      failure = new Error("Preview conversion timed out.");
-      ffmpeg.kill("SIGKILL");
-    }, 45_000);
+  if (!rootUrl || !mediaPath) {
+    throw new Error("Preview manifest did not contain the expected media URL.");
+  }
 
-    ffmpeg.stdout.on("data", (chunk: Buffer) => {
-      byteCount += chunk.length;
-      if (byteCount > MAX_PREVIEW_BYTES) {
-        failure = new Error("Preview output exceeded the size limit.");
-        ffmpeg.kill("SIGKILL");
-        return;
-      }
-      chunks.push(chunk);
-    });
+  const root = new URL(rootUrl);
+  if (!PREVIEW_HOSTS.has(root.hostname)) {
+    throw new Error("Preview manifest returned an unexpected media host.");
+  }
 
-    ffmpeg.stderr.on("data", (chunk: Buffer) => {
-      stderr = (stderr + chunk.toString()).slice(-4000);
-    });
+  const mediaUrl = new URL(mediaPath, root.href.endsWith("/") ? root : `${root.href}/`);
+  if (mediaUrl.protocol !== "https:" || mediaUrl.origin !== root.origin) {
+    throw new Error("Preview manifest returned an invalid media URL.");
+  }
 
-    ffmpeg.on("error", (error) => {
-      clearTimeout(timeout);
-      reject(error);
-    });
-
-    ffmpeg.on("close", (code) => {
-      clearTimeout(timeout);
-      if (failure) {
-        reject(failure);
-      } else if (code !== 0 || chunks.length === 0) {
-        reject(new Error(stderr.trim() || "FFmpeg could not decode the preview."));
-      } else {
-        resolve(Buffer.concat(chunks));
-      }
-    });
-  });
+  return mediaUrl;
 }
 
 export async function GET(
   _request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
-  let tempDirectory: string | null = null;
-
   try {
     const { id } = await context.params;
     const { rows } = await fetchTrackData();
@@ -113,24 +69,33 @@ export async function GET(
       throw new Error("Preview provider returned an invalid manifest.");
     }
 
-    const manifest = Buffer.from(payload.playlist, "base64");
-    if (manifest.length === 0 || manifest.length > 1024 * 1024) {
+    const manifest = Buffer.from(payload.playlist, "base64").toString("utf8");
+    if (manifest.length === 0 || Buffer.byteLength(manifest) > MAX_MANIFEST_BYTES) {
       throw new Error("Preview provider returned an invalid manifest.");
     }
 
-    tempDirectory = await mkdtemp(path.join(os.tmpdir(), "festival-preview-"));
-    const manifestPath = path.join(tempDirectory, "preview.mpd");
-    await writeFile(manifestPath, manifest);
-    const audio = await convertPreview(manifestPath);
-    const body = new Uint8Array(audio.length);
-    body.set(audio);
+    const mediaUrl = getPreviewMediaUrl(manifest);
+    const mediaResponse = await fetch(mediaUrl, {
+      signal: AbortSignal.timeout(20_000),
+      cache: "no-store",
+    });
+    if (!mediaResponse.ok || !mediaResponse.body) {
+      throw new Error(`Preview media returned ${mediaResponse.status}.`);
+    }
 
-    return new Response(body, {
+    const contentLength = Number(mediaResponse.headers.get("content-length"));
+    if (Number.isFinite(contentLength) && contentLength > MAX_PREVIEW_BYTES) {
+      throw new Error("Preview media exceeded the size limit.");
+    }
+
+    return new Response(mediaResponse.body, {
       headers: {
-        "Content-Type": "audio/ogg",
-        "Content-Length": String(audio.length),
+        "Content-Type": "audio/mp4",
+        ...(Number.isFinite(contentLength) && contentLength > 0
+          ? { "Content-Length": String(contentLength) }
+          : {}),
         "Cache-Control": "private, no-store",
-        "Content-Disposition": 'inline; filename="track-preview.ogg"',
+        "Content-Disposition": 'inline; filename="track-preview.mp4"',
       },
     });
   } catch (error) {
@@ -139,9 +104,5 @@ export async function GET(
       { error: "Could not load this preview right now." },
       { status: 502 }
     );
-  } finally {
-    if (tempDirectory) {
-      await rm(tempDirectory, { recursive: true, force: true }).catch(() => undefined);
-    }
   }
 }
