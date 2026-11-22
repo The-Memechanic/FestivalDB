@@ -396,7 +396,7 @@ export default function SimilaritySearchClient() {
                       setTargetKeyPitch(selectedRow ? getPitchClass(selectedRow.key) : null);
                       setPage(1);
                     }}
-                    className="shrink-0 rounded-lg border border-border px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
+                    className="shrink-0 rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Return to Original
                   </button>

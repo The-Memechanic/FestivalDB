@@ -167,7 +167,7 @@ function DifficultyBadges({
         type="button"
         aria-pressed={individualColors}
         onClick={() => onIndividualColorsChange(!individualColors)}
-        className="self-end rounded-md border border-border-muted px-2 py-1 text-xs text-text-muted transition hover:text-text"
+        className="self-end rounded-md border border-border bg-bg px-2 py-1 text-xs text-text-muted transition hover:bg-bg-dark"
       >
         {individualColors ? "Color by Difficulty" : "Individual Colors"}
       </button>
