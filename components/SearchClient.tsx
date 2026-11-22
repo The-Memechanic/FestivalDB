@@ -697,6 +697,7 @@ export default function SearchClient() {
                   <Link
                     key={(page - 1) * PAGE_SIZE + i}
                     href={`/track/${getTrackSlug(row)}`}
+                    scroll={false}
                     className="group flex min-w-0 flex-col gap-2 rounded-lg border border-border-muted bg-bg-light p-3 transition-colors hover:border-primary"
                   >
                     <div className="aspect-square w-full overflow-hidden rounded-md bg-bg-dark">

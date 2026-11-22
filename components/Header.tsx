@@ -27,17 +27,18 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border-muted bg-bg-dark/80 backdrop-blur">
-      <div className="mx-auto grid max-w-6xl grid-cols-3 items-center px-4 py-3">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4 px-4 py-3">
         {/* Left: Title */}
         <Link
           href="/"
-          className="justify-self-start text-lg font-semibold tracking-tight text-text"
+          scroll={false}
+          className="col-start-1 row-start-1 justify-self-start whitespace-nowrap text-lg font-semibold tracking-tight text-text"
         >
           FestivalDB
         </Link>
 
         {/* Center: Navigation */}
-        <nav className="justify-self-center flex items-center gap-1 rounded-lg border border-border-muted bg-bg-light p-1">
+        <nav className="col-start-2 row-start-1 flex min-w-max items-center justify-self-center gap-1 whitespace-nowrap rounded-lg border border-border-muted bg-bg-light p-1">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
 
@@ -45,6 +46,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                scroll={false}
                 className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
                   isActive
                     ? "bg-primary text-bg-dark"
@@ -58,7 +60,7 @@ export default function Header() {
         </nav>
 
         {/* Right: Social links */}
-        <div className="justify-self-end flex items-center gap-1">
+        <div className="col-start-3 row-start-1 flex items-center justify-self-end gap-1">
           {SOCIAL_LINKS.map((social) => {
             const Icon = social.icon;
 

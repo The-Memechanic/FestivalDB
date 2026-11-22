@@ -292,11 +292,12 @@ export default function TrackPage() {
   }, [track]);
 
   return (
-    <main className="min-h-screen bg-bg px-4 pt-2 pb-8 text-text transition-colors md:py-8">
+    <main className="min-h-screen bg-bg px-4 py-8 text-text transition-colors">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-6 flex items-center justify-between gap-3">
           <Link
             href="/"
+            scroll={false}
             className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-bg-dark transition hover:bg-highlight"
           >
             ← Back to search
@@ -305,6 +306,7 @@ export default function TrackPage() {
           {track ? (
             <Link
               href={`/similarity?track=${getTrackSlug(track)}`}
+              scroll={false}
               className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-bg-dark transition hover:bg-highlight"
             >
               Find similar tracks →

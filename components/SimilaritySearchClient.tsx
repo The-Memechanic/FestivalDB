@@ -499,6 +499,7 @@ export default function SimilaritySearchClient() {
                 <div className="mt-3">
                   <Link
                     href={`/track/${getTrackSlug(selectedRow)}`}
+                    scroll={false}
                     aria-label={`Open ${selectedRow.song} track page`}
                     className="group mx-auto block w-4/5 overflow-hidden rounded-lg shadow-sm ring-1 ring-border-muted"
                   >
@@ -518,6 +519,7 @@ export default function SimilaritySearchClient() {
                   </Link>
                   <Link
                     href={`/track/${getTrackSlug(selectedRow)}`}
+                    scroll={false}
                     className="mt-3 block w-full min-w-0 rounded-xl border border-border-muted bg-gradient-to-br from-bg-light to-bg p-4 shadow-sm transition hover:border-primary"
                   >
                     <div className="w-full min-w-0 overflow-hidden">
@@ -574,6 +576,7 @@ export default function SimilaritySearchClient() {
                       <Link
                         key={toRowKey(item.row)}
                         href={`/track/${getTrackSlug(item.row)}`}
+                        scroll={false}
                         className={`group relative flex min-w-0 flex-col gap-3 rounded-xl border border-border-muted bg-bg-light p-3 shadow-sm ring-1 ring-inset transition hover:-translate-y-0.5 hover:shadow-md ${getScoreRingClass(
                           item.score
                         )}`}
