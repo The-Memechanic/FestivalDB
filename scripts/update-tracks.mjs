@@ -23,6 +23,17 @@ async function save(data) {
   );
 }
 
+async function readExisting() {
+  try {
+    const raw = await fs.readFile(TRACKS_FILE, "utf8");
+    const parsed = JSON.parse(raw);
+    delete parsed._metadata;
+    return parsed;
+  } catch {
+    return {};
+  }
+}
+
 async function fetchSparkTracks() {
   const res = await fetch(SPARK_TRACKS_URL);
 
@@ -106,7 +117,25 @@ function transformTrack(entry) {
   };
 }
 
+function canonicalize(value) {
+  if (Array.isArray(value)) return value.map(canonicalize);
+  if (value && typeof value === "object") {
+    return Object.keys(value)
+      .sort()
+      .reduce((sorted, key) => {
+        sorted[key] = canonicalize(value[key]);
+        return sorted;
+      }, {});
+  }
+  return value;
+}
+
+function isEqual(left, right) {
+  return JSON.stringify(canonicalize(left)) === JSON.stringify(canonicalize(right));
+}
+
 async function main() {
+  const existing = await readExisting();
   const sparkTracks = await fetchSparkTracks();
 
   const tracks = {};
@@ -118,9 +147,14 @@ async function main() {
     tracks[track.sn] = transformTrack(entry);
   }
 
-  await save(tracks);
+  if (isEqual(existing, tracks)) {
+    console.log("No catalog changes detected — skipping save.");
+  } else {
+    await save(tracks);
+    console.log("Track catalog changed — saved.");
+  }
 
-  console.log(`Finished. Wrote ${Object.keys(tracks).length} tracks.`);
+  console.log(`Finished. Checked ${Object.keys(tracks).length} tracks.`);
 }
 
 main().catch((err) => {

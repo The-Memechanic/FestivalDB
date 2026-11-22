@@ -7,6 +7,7 @@ import type { TrackRow } from "@/lib/fetchTracks";
 import { useSearchParams } from "next/navigation";
 import { matchesTrackSlug, getTrackSlug } from "@/lib/trackSlug";
 import { getPitchClass, formatKeyLabel } from "@/lib/musicKey";
+import { MarqueeText } from "@/components/MarqueeText";
 
 type WeightState = {
   bpm: number;
@@ -21,6 +22,8 @@ type RankedSong = {
 };
 
 const PAGE_SIZE = 10; // 5 columns x 2 rows
+const KEY_NOTES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const SIMILARITY_STORAGE_KEY = "festivaldb-similarity-page-state-v1";
 
 const toDisplayLabel = (row: TrackRow) => {
   if (row.artist && row.song) {
@@ -49,12 +52,11 @@ const getBpmSimilarity = (left?: number | null, right?: number | null) => {
 };
 
 const getKeySimilarity = (
-  leftKey?: string | null,
+  leftPitch: number | null,
   rightKey?: string | null,
   leftMode?: string | null,
   rightMode?: string | null
 ) => {
-  const leftPitch = getPitchClass(leftKey);
   const rightPitch = getPitchClass(rightKey);
 
   if (leftPitch === null || rightPitch === null) {
@@ -80,15 +82,17 @@ const clampWeight = (value: number) => Math.max(0, Math.min(1, Number(value.toFi
 const computeRanking = (
   targetRow: TrackRow,
   allRows: TrackRow[],
-  weights: WeightState
+  weights: WeightState,
+  targetBpm: number | null,
+  targetKeyPitch: number | null
 ): RankedSong[] => {
   const targetKey = toRowKey(targetRow);
 
   return allRows
     .filter((row) => toRowKey(row) !== targetKey)
     .map((row) => {
-      const bpmSimilarity = getBpmSimilarity(targetRow.bpm, row.bpm);
-      const keySimilarity = getKeySimilarity(targetRow.key, row.key, targetRow.mode, row.mode);
+      const bpmSimilarity = getBpmSimilarity(targetBpm, row.bpm);
+      const keySimilarity = getKeySimilarity(targetKeyPitch, row.key, targetRow.mode, row.mode);
       const score = bpmSimilarity * weights.bpm + keySimilarity * weights.key;
 
       return {
@@ -125,10 +129,75 @@ export default function SimilaritySearchClient() {
   const [selectedSongKey, setSelectedSongKey] = useState<string | null>(null);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [draftWeights, setDraftWeights] = useState<WeightState>({ bpm: 0.5, key: 0.5 });
+  const [targetBpm, setTargetBpm] = useState<number | null>(null);
+  const [targetKeyPitch, setTargetKeyPitch] = useState<number | null>(null);
   const [ranking, setRanking] = useState<RankedSong[]>([]);
   const [hasCalculated, setHasCalculated] = useState(false);
   const [page, setPage] = useState(1);
+  const [stateReady, setStateReady] = useState(false);
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(SIMILARITY_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved) as Record<string, unknown>;
+        if (typeof parsed.query === "string") setQuery(parsed.query);
+        if (typeof parsed.selectedSongKey === "string" || parsed.selectedSongKey === null) {
+          setSelectedSongKey(parsed.selectedSongKey);
+        }
+        if (
+          parsed.draftWeights &&
+          typeof parsed.draftWeights === "object" &&
+          "bpm" in parsed.draftWeights &&
+          "key" in parsed.draftWeights
+        ) {
+          const weights = parsed.draftWeights as Record<string, unknown>;
+          if (typeof weights.bpm === "number" && typeof weights.key === "number") {
+            setDraftWeights({ bpm: clampWeight(weights.bpm), key: clampWeight(weights.key) });
+          }
+        }
+        if (typeof parsed.targetBpm === "number" || parsed.targetBpm === null) {
+          setTargetBpm(parsed.targetBpm);
+        }
+        if (
+          (typeof parsed.targetKeyPitch === "number" &&
+            Number.isInteger(parsed.targetKeyPitch) &&
+            parsed.targetKeyPitch >= 0 &&
+            parsed.targetKeyPitch <= 11) ||
+          parsed.targetKeyPitch === null
+        ) {
+          setTargetKeyPitch(parsed.targetKeyPitch as number | null);
+        }
+        if (typeof parsed.page === "number" && Number.isInteger(parsed.page) && parsed.page > 0) {
+          setPage(parsed.page);
+        }
+      }
+    } catch {
+      // Ignore invalid or unavailable saved state and use defaults.
+    } finally {
+      setStateReady(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!stateReady) return;
+    try {
+      window.localStorage.setItem(
+        SIMILARITY_STORAGE_KEY,
+        JSON.stringify({
+          query,
+          selectedSongKey,
+          draftWeights,
+          targetBpm,
+          targetKeyPitch,
+          page,
+        })
+      );
+    } catch {
+      // The page still works if browser storage is disabled or full.
+    }
+  }, [stateReady, query, selectedSongKey, draftWeights, targetBpm, targetKeyPitch, page]);
 
   useEffect(() => {
     async function loadRows() {
@@ -173,6 +242,15 @@ export default function SimilaritySearchClient() {
     return rows.find((row) => toRowKey(row) === selectedSongKey) ?? null;
   }, [rows, selectedSongKey]);
 
+  const bpmBounds = useMemo(() => {
+    const values = rows
+      .map((row) => row.bpm)
+      .filter((value): value is number => typeof value === "number" && Number.isFinite(value));
+    return values.length > 0
+      ? { min: Math.floor(Math.min(...values)), max: Math.ceil(Math.max(...values)) }
+      : { min: 0, max: 300 };
+  }, [rows]);
+
   useEffect(() => {
     if (!selectedRow) {
       setRanking([]);
@@ -180,17 +258,19 @@ export default function SimilaritySearchClient() {
       return;
     }
 
-    const nextRanking = computeRanking(selectedRow, rows, draftWeights);
+    const nextRanking = computeRanking(
+      selectedRow,
+      rows,
+      draftWeights,
+      targetBpm,
+      targetKeyPitch
+    );
     setRanking(nextRanking);
     setHasCalculated(true);
-  }, [draftWeights, rows, selectedRow]);
+  }, [draftWeights, rows, selectedRow, targetBpm, targetKeyPitch]);
 
   useEffect(() => {
-    setPage(1);
-  }, [selectedRow, draftWeights]);
-
-  useEffect(() => {
-  if (loading || rows.length === 0) return;
+  if (!stateReady || loading || rows.length === 0) return;
 
   const trackSlug = searchParams.get("track");
   if (!trackSlug) return;
@@ -199,20 +279,28 @@ export default function SimilaritySearchClient() {
   if (match) {
     setSelectedSongKey(toRowKey(match));
     setQuery(toDisplayLabel(match));
+    setTargetBpm(match.bpm ?? null);
+    setTargetKeyPitch(getPitchClass(match.key));
+    setPage(1);
   }
-}, [loading, rows, searchParams]);
+}, [stateReady, loading, rows, searchParams]);
 
   const handleBpmWeightChange = (value: number) => {
     const clampedValue = clampWeight(value);
     setDraftWeights({ bpm: clampedValue, key: clampWeight(1 - clampedValue) });
+    setPage(1);
   };
 
   const handleKeyWeightChange = (value: number) => {
     const clampedValue = clampWeight(value);
     setDraftWeights({ bpm: clampWeight(1 - clampedValue), key: clampedValue });
+    setPage(1);
   };
 
   const totalPages = Math.max(1, Math.ceil(ranking.length / PAGE_SIZE));
+  useEffect(() => {
+    if (hasCalculated && page > totalPages) setPage(totalPages);
+  }, [hasCalculated, page, totalPages]);
   const paginatedRanking = useMemo(() => {
     const start = (page - 1) * PAGE_SIZE;
     return ranking.slice(start, start + PAGE_SIZE);
@@ -238,8 +326,8 @@ export default function SimilaritySearchClient() {
         </div>
       ) : (
         <>
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="space-y-5">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-stretch">
+            <div className="min-w-0 space-y-5 lg:flex lg:h-full lg:flex-col lg:gap-5 lg:space-y-0">
               <div className="rounded-lg border border-border-muted bg-bg-light p-4">
                 <label className="mb-2 block text-sm font-medium text-text-muted" htmlFor="song-search">
                   Search for a song
@@ -251,6 +339,9 @@ export default function SimilaritySearchClient() {
                     onChange={(event) => {
                       setQuery(event.target.value);
                       setSelectedSongKey(null);
+                      setTargetBpm(null);
+                      setTargetKeyPitch(null);
+                      setPage(1);
                       setShowSuggestions(true);
                     }}
                     onFocus={() => setShowSuggestions(true)}
@@ -271,6 +362,9 @@ export default function SimilaritySearchClient() {
                               onClick={() => {
                                 setSelectedSongKey(toRowKey(song));
                                 setQuery(label);
+                                setTargetBpm(song.bpm ?? null);
+                                setTargetKeyPitch(getPitchClass(song.key));
+                                setPage(1);
                                 setShowSuggestions(false);
                               }}
                               className="flex w-full flex-col items-start px-3 py-2 text-left text-sm text-text-muted transition hover:bg-bg-dark"
@@ -287,6 +381,75 @@ export default function SimilaritySearchClient() {
               </div>
 
               <div className="rounded-lg border border-border-muted bg-bg-light p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h3 className="text-base font-semibold text-text">Adjust selected track</h3>
+                    <p className="mt-1 text-sm text-text-muted">
+                      Shift the reference BPM and key.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    disabled={!selectedRow}
+                    onClick={() => {
+                      setTargetBpm(selectedRow?.bpm ?? null);
+                      setTargetKeyPitch(selectedRow ? getPitchClass(selectedRow.key) : null);
+                      setPage(1);
+                    }}
+                    className="shrink-0 rounded-lg border border-border px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    Return to Original
+                  </button>
+                </div>
+                <div className="mt-4 space-y-4">
+                  <label className="block text-sm font-medium text-text-muted">
+                    <div className="mb-2 flex items-center justify-between">
+                      <span>Target BPM</span>
+                      <span>{targetBpm ?? "—"}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min={bpmBounds.min}
+                      max={bpmBounds.max}
+                      step="1"
+                      value={targetBpm ?? bpmBounds.min}
+                      disabled={targetBpm === null}
+                      onChange={(event) => {
+                        setTargetBpm(Number(event.target.value));
+                        setPage(1);
+                      }}
+                      className="w-full accent-primary disabled:opacity-40"
+                      aria-label="Target BPM"
+                    />
+                  </label>
+
+                  <label className="block text-sm font-medium text-text-muted">
+                    <div className="mb-2 flex items-center justify-between">
+                      <span>Target key</span>
+                      <span>
+                        {targetKeyPitch === null ? "—" : formatKeyLabel(KEY_NOTES[targetKeyPitch])}
+                        {selectedRow?.mode ? ` ${selectedRow.mode}` : ""}
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="11"
+                      step="1"
+                      value={targetKeyPitch ?? 0}
+                      disabled={targetKeyPitch === null}
+                      onChange={(event) => {
+                        setTargetKeyPitch(Number(event.target.value));
+                        setPage(1);
+                      }}
+                      className="w-full accent-primary disabled:opacity-40"
+                      aria-label="Target key"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-border-muted bg-bg-light p-4 lg:flex-1">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-base font-semibold text-text">Similarity weights</h3>
@@ -330,49 +493,53 @@ export default function SimilaritySearchClient() {
               </div>
             </div>
 
-            <div className="rounded-lg border border-border-muted bg-bg-light p-4">
+            <div className="min-w-0 rounded-lg border border-border-muted bg-bg-light p-4 lg:self-stretch">
               <h3 className="text-base font-semibold text-text">Selected track</h3>
               {selectedRow ? (
-                <Link
-                  href={`/track/${getTrackSlug(selectedRow)}`}
-                  className="group mt-3 block overflow-hidden rounded-xl border border-border-muted bg-gradient-to-br from-bg-light to-bg p-4 shadow-sm transition hover:border-primary"
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0">
-                      <div className="h-48 w-48 overflow-hidden rounded-lg shadow-sm ring-1 ring-border-muted">
-                        {selectedRow.albumArt ? (
-                          <img
-                            src={selectedRow.albumArt}
-                            alt={selectedRow.song || "Album art"}
-                            className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-primary text-lg font-semibold text-bg-dark">
-                            ★
-                          </div>
-                        )}
-                      </div>
-                      <div className="mt-2 flex justify-center gap-6">
-                        {selectedRow.bpm != null ? (
-                          <span className="rounded-full bg-bg-dark px-2.5 py-1 text-xs font-medium text-text-muted">
-                            BPM {selectedRow.bpm}
-                          </span>
-                        ) : null}
-                        {selectedRow.key || selectedRow.mode ? (
-                          <span className="rounded-full bg-bg-dark px-2.5 py-1 text-xs font-medium text-text-muted">
-                            {selectedRow.key && selectedRow.mode
-                              ? `${formatKeyLabel(selectedRow.key)} ${selectedRow.mode}`
-                              : formatKeyLabel(selectedRow.key) || selectedRow.mode}
-                          </span>
-                        ) : null}
-                      </div>
+                <div className="mt-3">
+                  <Link
+                    href={`/track/${getTrackSlug(selectedRow)}`}
+                    aria-label={`Open ${selectedRow.song} track page`}
+                    className="group mx-auto block w-4/5 overflow-hidden rounded-lg shadow-sm ring-1 ring-border-muted"
+                  >
+                    <div className="aspect-square w-full">
+                      {selectedRow.albumArt ? (
+                        <img
+                          src={selectedRow.albumArt}
+                          alt={selectedRow.song || "Album art"}
+                          className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-primary text-lg font-semibold text-bg-dark">
+                          ★
+                        </div>
+                      )}
                     </div>
-                    <div className="min-w-0 pt-1">
-                      <p className="text-lg font-semibold text-text">{selectedRow.song}</p>
+                  </Link>
+                  <Link
+                    href={`/track/${getTrackSlug(selectedRow)}`}
+                    className="mt-3 block w-full min-w-0 rounded-xl border border-border-muted bg-gradient-to-br from-bg-light to-bg p-4 shadow-sm transition hover:border-primary"
+                  >
+                    <div className="w-full min-w-0 overflow-hidden">
+                      <MarqueeText text={selectedRow.song} className="text-lg font-semibold text-text" />
                       <p className="text-sm text-text-muted">{selectedRow.artist || "Unknown artist"}</p>
                     </div>
-                  </div>
-                </Link>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {selectedRow.bpm != null ? (
+                        <span className="rounded-full bg-bg-dark px-2.5 py-1 text-xs font-medium text-text-muted">
+                          BPM {selectedRow.bpm}
+                        </span>
+                      ) : null}
+                      {selectedRow.key || selectedRow.mode ? (
+                        <span className="rounded-full bg-bg-dark px-2.5 py-1 text-xs font-medium text-text-muted">
+                          {selectedRow.key && selectedRow.mode
+                            ? `${formatKeyLabel(selectedRow.key)} ${selectedRow.mode}`
+                            : formatKeyLabel(selectedRow.key) || selectedRow.mode}
+                        </span>
+                      ) : null}
+                    </div>
+                  </Link>
+                </div>
               ) : (
                 <p className="mt-3 text-sm text-text-muted">Choose a track from the autocomplete to start ranking similar songs.</p>
               )}
@@ -407,7 +574,7 @@ export default function SimilaritySearchClient() {
                       <Link
                         key={toRowKey(item.row)}
                         href={`/track/${getTrackSlug(item.row)}`}
-                        className={`group relative flex flex-col gap-3 rounded-xl border border-border-muted bg-bg-light p-3 shadow-sm ring-1 ring-inset transition hover:-translate-y-0.5 hover:shadow-md ${getScoreRingClass(
+                        className={`group relative flex min-w-0 flex-col gap-3 rounded-xl border border-border-muted bg-bg-light p-3 shadow-sm ring-1 ring-inset transition hover:-translate-y-0.5 hover:shadow-md ${getScoreRingClass(
                           item.score
                         )}`}
                       >
@@ -421,7 +588,7 @@ export default function SimilaritySearchClient() {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex min-w-0 items-center gap-3">
                           <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-bg-dark">
                             {item.row.albumArt ? (
                               <img
@@ -436,8 +603,11 @@ export default function SimilaritySearchClient() {
                             )}
                           </div>
 
-                          <div className="min-w-0">
-                            <p className="truncate text-sm font-semibold text-text">{item.row.song || "Untitled track"}</p>
+                          <div className="min-w-0 flex-1">
+                            <MarqueeText
+                              text={item.row.song || "Untitled track"}
+                              className="text-sm font-semibold text-text"
+                            />
                             <p className="truncate text-xs text-text-muted">{item.row.artist || "Unknown artist"}</p>
                           </div>
                         </div>

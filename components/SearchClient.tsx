@@ -6,6 +6,7 @@ import Fuse from "fuse.js";
 import type { TrackRow } from "@/lib/fetchTracks";
 import { getTrackSlug } from "@/lib/trackSlug";
 import { getPitchClass, formatKeyLabel } from "@/lib/musicKey";
+import { MarqueeText } from "@/components/MarqueeText";
 
 const SORT_OPTIONS = [
   { value: "relevancy", label: "Relevancy" },
@@ -669,7 +670,7 @@ export default function SearchClient() {
                   type="button"
                   onClick={() => setPage((current) => Math.max(1, current - 1))}
                   disabled={page === 1}
-                  className="rounded-lg border border-border bg-primary px-3 py-2 text-sm text-bg-dark disabled:cursor-not-allowed disabled:opacity-40 hover:bg-highlight focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Go Back
                 </button>
@@ -677,7 +678,7 @@ export default function SearchClient() {
                   type="button"
                   onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
                   disabled={page === totalPages}
-                  className="rounded-lg border border-border bg-primary px-3 py-2 text-sm text-bg-dark disabled:cursor-not-allowed disabled:opacity-40 hover:bg-highlight focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   Keep Going
                 </button>
@@ -696,7 +697,7 @@ export default function SearchClient() {
                   <Link
                     key={(page - 1) * PAGE_SIZE + i}
                     href={`/track/${getTrackSlug(row)}`}
-                    className="group flex flex-col gap-2 rounded-lg border border-border-muted bg-bg-light p-3 transition-colors hover:border-primary"
+                    className="group flex min-w-0 flex-col gap-2 rounded-lg border border-border-muted bg-bg-light p-3 transition-colors hover:border-primary"
                   >
                     <div className="aspect-square w-full overflow-hidden rounded-md bg-bg-dark">
                       {row.albumArt ? (
@@ -712,10 +713,11 @@ export default function SearchClient() {
                         </div>
                       )}
                     </div>
-                    <div>
-                      <p className="truncate text-sm font-semibold text-text">
-                        {row.song || "Untitled track"}
-                      </p>
+                    <div className="min-w-0">
+                      <MarqueeText
+                        text={row.song || "Untitled track"}
+                        className="text-sm font-semibold text-text"
+                      />
                       <p className="truncate text-xs text-text-muted">
                         {row.artist || "Unknown artist"}
                       </p>
@@ -734,7 +736,7 @@ export default function SearchClient() {
                       type="button"
                       onClick={() => setPage((current) => Math.max(1, current - 1))}
                       disabled={page === 1}
-                      className="rounded-lg border border-border bg-primary px-3 py-2 text-sm text-bg-dark disabled:cursor-not-allowed disabled:opacity-40 hover:bg-highlight focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Go Back
                     </button>
@@ -742,7 +744,7 @@ export default function SearchClient() {
                       type="button"
                       onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
                       disabled={page === totalPages}
-                      className="rounded-lg border border-border bg-primary px-3 py-2 text-sm text-bg-dark disabled:cursor-not-allowed disabled:opacity-40 hover:bg-highlight focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="rounded-lg border border-border bg-bg px-3 py-2 text-sm text-text-muted transition hover:bg-bg-dark disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Keep Going
                     </button>

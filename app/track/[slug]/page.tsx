@@ -16,7 +16,6 @@ const DETAIL_KEYS = new Set([
   "activeDate",
   "newUntilDate",
   "album",
-  "genres",
   "esrbRating",
 ]);
 
