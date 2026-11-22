@@ -206,6 +206,7 @@ export default function TrackPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [individualPipColors, setIndividualPipColors] = useState(false);
+  const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     try {
@@ -227,7 +228,18 @@ export default function TrackPage() {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    let secondFrame = 0;
+    const firstFrame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      secondFrame = window.requestAnimationFrame(() => {
+        mainRef.current?.scrollIntoView({ block: "start", behavior: "instant" });
+      });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame);
+      if (secondFrame) window.cancelAnimationFrame(secondFrame);
+    };
   }, [slug]);
 
   useEffect(() => {
@@ -292,7 +304,7 @@ export default function TrackPage() {
   }, [track]);
 
   return (
-    <main className="min-h-screen bg-bg px-4 py-8 text-text transition-colors">
+    <main ref={mainRef} className="min-h-screen bg-bg px-4 py-8 text-text transition-colors">
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-6 flex items-center justify-between gap-3">
           <Link
