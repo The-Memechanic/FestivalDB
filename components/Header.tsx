@@ -38,7 +38,7 @@ export default function Header() {
         </Link>
 
         {/* Center: Navigation */}
-        <nav className="col-start-2 row-start-1 flex min-w-max items-center justify-self-center gap-1 whitespace-nowrap rounded-lg border border-border-muted bg-bg-light p-1">
+        <nav className="col-start-2 row-start-1 flex min-w-max items-center justify-self-center gap-0.5 whitespace-nowrap rounded-lg border border-border-muted bg-bg-light p-0.5 sm:gap-1 sm:p-1">
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
 
@@ -47,7 +47,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 scroll={false}
-                className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+                className={`rounded-md px-2 py-1 text-xs font-medium transition sm:px-3 sm:py-1.5 sm:text-sm ${
                   isActive
                     ? "bg-primary text-bg-dark"
                     : "text-text-muted hover:bg-bg-dark hover:text-text"
