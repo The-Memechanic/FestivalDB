@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-22T17:54:50.176Z"
+    "lastUpdated": "2026-11-24T15:09:48.655Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -39855,5 +39855,56 @@
     "lastModified": "2026-11-18T13:26:23.193Z",
     "catalogTitle": "wellerman",
     "previewId": "f9d74678-f9be-4044-9db0-9da3a7a86e6e"
+  },
+  "blacksheep": {
+    "id": "blacksheep",
+    "shortname": "blacksheep",
+    "song": "Black Sheep",
+    "artist": "Metric",
+    "album": "",
+    "placeholderId": "SparksSong:sid_placeholder_927",
+    "releaseYear": 2010,
+    "bpm": 124,
+    "duration": 250,
+    "trackNumber": null,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 2,
+      "bass": 2,
+      "drums": 4,
+      "plasticVocals": 2,
+      "plasticGuitar": 2,
+      "plasticBass": 3,
+      "plasticDrums": 4
+    },
+    "key": "E",
+    "mode": "Minor",
+    "jamLoopMnemonicCode": "9850-5688-2715",
+    "leaderboardEventId": "e8abb9df-9160-44da-85cc-6e1ad62cfbec",
+    "isrc": null,
+    "esrbRating": "E",
+    "tapVocalsStartingInstrument": "Vocals",
+    "bassStartingInstrument": "Bass",
+    "drumsStartingInstrument": "Drum",
+    "guitarStartingInstrument": "Guitar",
+    "lipSyncAssetUrl": "https://cdn2.unrealengine.com/blacksheep-128a94e885ce.lad",
+    "chartUrl": "https://cdn2.unrealengine.com/knqqk8icpahf7cgn-06f2b13a80a2.dat",
+    "genres": [],
+    "gameplayTags": [],
+    "musicMomentOffset": null,
+    "newUntilDate": "2026-11-30T00:00:00.000Z",
+    "albumArt": "https://cdn2.unrealengine.com/qbolwohzvwuhdsa4-512x512-61cb6f63aeea.jpg",
+    "questThumbnail": null,
+    "stageMood": null,
+    "animationGenre": null,
+    "countInDuration": null,
+    "trackType": "SparkTrack",
+    "noIndex": false,
+    "activeDate": "2026-08-28T18:41:11.084Z",
+    "locale": "en-US",
+    "templateName": "track",
+    "lastModified": "2026-11-24T14:50:02.731Z",
+    "catalogTitle": "blacksheep",
+    "previewId": "9c78aed0-7c8c-4106-bcb6-f04fadb92413"
   }
 }
