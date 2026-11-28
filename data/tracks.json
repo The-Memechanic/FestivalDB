@@ -1,6 +1,6 @@
 {
   "_metadata": {
-    "lastUpdated": "2026-11-24T15:09:48.655Z"
+    "lastUpdated": "2026-11-28T14:08:05.708Z"
   },
   "butterbarnhoedown": {
     "id": "butterbarnhoedown",
@@ -39906,5 +39906,56 @@
     "lastModified": "2026-11-24T14:50:02.731Z",
     "catalogTitle": "blacksheep",
     "previewId": "9c78aed0-7c8c-4106-bcb6-f04fadb92413"
+  },
+  "ifollowrivers": {
+    "id": "ifollowrivers",
+    "shortname": "ifollowrivers",
+    "song": "I Follow Rivers (The Magician Remix)",
+    "artist": "Lykke Li, The Magician",
+    "album": "",
+    "placeholderId": "SparksSong:sid_placeholder_970",
+    "releaseYear": 2011,
+    "bpm": 122,
+    "duration": 286,
+    "trackNumber": null,
+    "difficulty": {
+      "vocals": 2,
+      "guitar": 1,
+      "bass": 1,
+      "drums": 2,
+      "plasticVocals": 2,
+      "plasticGuitar": 1,
+      "plasticBass": 1,
+      "plasticDrums": 3
+    },
+    "key": "A",
+    "mode": "Minor",
+    "jamLoopMnemonicCode": "3015-4014-6448",
+    "leaderboardEventId": "502e8ea5-1218-4b31-b819-b65c1c93eefd",
+    "isrc": null,
+    "esrbRating": "E",
+    "tapVocalsStartingInstrument": "Vocals",
+    "bassStartingInstrument": "Bass",
+    "drumsStartingInstrument": "Drum",
+    "guitarStartingInstrument": "Keyboard",
+    "lipSyncAssetUrl": "https://cdn2.unrealengine.com/ifollowrivers-9f7125c1e0d5.lad",
+    "chartUrl": "https://cdn2.unrealengine.com/rqeuvtxp0dtihkz8-a7141d5c5f83.dat",
+    "genres": [],
+    "gameplayTags": [],
+    "musicMomentOffset": null,
+    "newUntilDate": "2026-11-30T00:00:00.000Z",
+    "albumArt": "https://cdn2.unrealengine.com/y4dhnc5cbets6oxx-512x512-a765dc00780d.jpg",
+    "questThumbnail": null,
+    "stageMood": null,
+    "animationGenre": null,
+    "countInDuration": null,
+    "trackType": "SparkTrack",
+    "noIndex": false,
+    "activeDate": "2026-11-28T13:30:00.000Z",
+    "locale": "en-US",
+    "templateName": "track",
+    "lastModified": "2026-11-24T14:51:15.847Z",
+    "catalogTitle": "ifollowrivers",
+    "previewId": "8bd1e49e-5e00-4874-b210-458cbd386f62"
   }
 }
